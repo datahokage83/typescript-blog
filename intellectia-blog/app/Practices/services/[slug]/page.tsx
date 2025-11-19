@@ -329,11 +329,20 @@ const PracticeDetailPage = () => {
                 alt={sub.attributes.SubAreaName}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
               />
-              <div className="absolute bottom-0 left-0 h-16 w-full bg-black/15 px-4 flex items-center clip-diagonal">
+              {/* <div className="absolute bottom-0 left-0 h-16 w-full bg-black/15 px-4 flex items-center clip-diagonal">
                 <p className="text-white font-semibold text-lgx font-dm-sans">
                   {sub.attributes.SubAreaName}
                 </p>
-              </div>
+              </div> */}
+
+              <div className="absolute bottom-0 left-0 h-16 w-full bg-black/15 px-4 flex items-center clip-diagonal">
+                  <span className="absolute left-4 top-1/2 -translate-y-1/2 h-7 w-[3px] bg-lime-300 rounded-full"></span>
+
+                  <p className="text-white font-semibold text-lgx font-dm-sans ml-3">
+                    {sub.attributes.SubAreaName}
+                  </p>
+                </div>
+
             </div>
           </Link>
         );
