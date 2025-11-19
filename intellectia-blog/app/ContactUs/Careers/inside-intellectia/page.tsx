@@ -18,12 +18,11 @@ async function getStrapiData(url: string) {
 
 export default function WorkwithUs() {
   const [logoURL, setLogoURL] = useState("");
-  const [randomImage, setRandomImage] = useState("");
   const [jobs, setJobs] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
-      /* ------------------------ FETCH LOGO ------------------------ */
+      /* Fetch Logo */
       const homeRes = await getStrapiData("/api/home-page?populate=*");
 
       if (homeRes?.data?.attributes?.Logo?.data?.attributes?.url) {
@@ -31,21 +30,7 @@ export default function WorkwithUs() {
         setLogoURL("http://localhost:1337" + logoUrl);
       }
 
-      /* ------------------------ RANDOM HERO IMAGE ------------------------ */
-      const imageRes = await getStrapiData("/api/image-section?populate=*");
-      const images = imageRes?.data?.attributes?.Images?.data || [];
-
-      if (images.length > 0) {
-        const randomIndex = Math.floor(Math.random() * images.length);
-        const selected = images[randomIndex].attributes.url;
-
-        const refreshedImage =
-          "http://localhost:1337" + selected + "?t=" + new Date().getTime();
-
-        setRandomImage(refreshedImage);
-      }
-
-      /* ------------------------ JOB LISTINGS ------------------------ */
+      /* Fetch Job Listings */
       const jobRes = await getStrapiData("/api/job-listings?populate=*");
       setJobs(jobRes?.data || []);
     };
@@ -58,53 +43,90 @@ export default function WorkwithUs() {
       <Nav logoURL={logoURL} />
 
       <section className="w-full bg-white flex flex-col items-center">
-        {/* Hero Image */}
-        <div className="w-full h-[350px] md:h-[450px] overflow-hidden relative">
-          {randomImage && (
-            <img
-              src={randomImage}
-              alt="Random hero artwork"
-              className="w-full h-full object-cover"
-            />
-          )}
-        </div>
 
-        <div className="relative w-full -mt-24 md:-mt-10 px-4 md:px-8 mb-20">
-          <div className="w-full bg-gray-200 p-5 md:p-8 flex flex-col gap-6 items-center">
-            <h1 className="text-gray-800 font-semibold text-5xl md:text-20xl font-dm-sans mb-5">
-              Openings
-            </h1>
+    
+                    {/* ===================== HERO SECTION ===================== */}
+            <div
+              className="relative w-full h-[380px] md:h-[540px] bg-cover bg-center flex items-center justify-center"
+              style={{
+                backgroundImage:
+                  "url('https://images.pexels.com/photos/30307652/pexels-photo-30307652.jpeg')",
+              }}
+            >
+              {/* Dark overlay for readability (optional but recommended) */}
+              <div className="absolute inset-0 bg-black/30"></div>
 
-            {/* JOB LIST LOOP */}
+              {/* CENTERED H1 */}
+              <h1 className="relative z-10 text-white font-semibold text-[30px] md:text-21xl font-opensans text-center">
+                Openings
+              </h1>
+
+              {/* BOTTOM-LEFT SPANS */}
+              <div className="absolute bottom-8 left-20 md:left-8 space-y-3 z-10">
+                <div className="flex flex-wrap gap-2">
+                  <span className="px-4 md:px-6 py-2 md:py-2 rounded-full border border-lime-300 text-lime-300 text-base md:text-4xl font-light">
+                    Join
+                  </span>
+                  <span className="px-4 md:px-6 py-2 md:py-2 rounded-full border border-lime-300 text-lime-300 text-base md:text-4xl font-light">
+                    a
+                  </span>
+                  <span className="px-4 md:px-6 py-2 md:py-2 rounded-full border border-lime-300 text-lime-300 text-base md:text-4xl font-light">
+                    Mission
+                  </span>
+                </div>
+
+                <div className="flex flex-wrap gap-2">
+                  <span className="px-4 md:px-6 py-2 md:py-2 rounded-full border border-lime-300 text-lime-300 text-base md:text-4xl font-light">
+                    Make
+                  </span>
+                  <span className="px-4 md:px-6 py-2 md:py-2 rounded-full border border-lime-300 text-lime-300 text-base md:text-4xl font-light">
+                    a
+                  </span>
+                  <span className="px-4 md:px-6 py-2 md:py-2 rounded-full border border-lime-300 text-lime-300 text-base md:text-4xl font-light">
+                    Change
+                  </span>
+                </div>
+              </div>
+            </div>
+
+
+        {/* ===================== JOB LISTINGS ===================== */}
+        <div className="w-full py-10">
+          <div className="w-full p-5 md:p-8 flex flex-col gap-6 items-center">
+            <button
+                className="px-7 py-3 rounded-full 
+                          bg-gray-950 text-white font-light 
+                          text-3xl md:text-lg font-dm-sans uppercase mb-5
+                          transition-all duration-300
+                          hover:bg-gradient-to-r hover:from-red-500 hover:to-yellow-400"
+              >
+                Latest Jobs Available Now
+              </button>
+
+
             {jobs.map((job: any) => (
               <div
                 key={job.id}
-                className="w-full max-w-5xl md:max-w-4xl bg-white shadow-md border p-5 md:p-8 flex flex-col gap-6"
+                className="w-full max-w-4xl md:max-w-5xl bg-gray-100 shadow-md border p-5 md:p-8 flex flex-col gap-6"
               >
-                {/* TOP: LOGO + TITLE */}
                 <div className="flex gap-4 w-full">
                   <img
                     src="/images/intellectia.png"
-                    className="w-16 md:w-16 h-16 md:h-16 object-contain"
+                    className="w-16 h-16 object-contain"
                     alt="Company Logo"
                   />
 
                   <div className="font-opensans flex flex-col">
-                    <h2 className="text-sm md:text-lg font-semibold">
+                    <h2 className="text-lg font-semibold">
                       {job.attributes.role}
                     </h2>
-                    <p className="text-gray-700 text-sm md:text-base">
-                      {job.attributes.company}
-                    </p>
-                    <p className="text-gray-500 text-sm md:text-base">
-                      {job.attributes.location}
-                    </p>
+                    <p className="text-gray-700">{job.attributes.company}</p>
+                    <p className="text-gray-500">{job.attributes.location}</p>
                   </div>
                 </div>
 
-                {/* BULLET POINT DESCRIPTION */}
                 {job.attributes.description?.length > 0 && (
-                  <ul className="pl-5 text-gray-700 text-sm md:text-base space-y-1">
+                  <ul className="pl-5 text-gray-700 space-y-1">
                     {job.attributes.description.map((item: any) => (
                       <li key={item.id} className="flex gap-2">
                         <span>-</span>
@@ -114,14 +136,10 @@ export default function WorkwithUs() {
                   </ul>
                 )}
 
-
-                {/* APPLY BUTTON AT BOTTOM */}
-                <div className="flex justify-end md:justify-end">
+                <div className="flex justify-end items-end">
                   <Link
                     href="/ContactUs/Careers/#careers"
-                    className="px-4 md:px-6 py-2 md:py-3 bg-gray-800 text-white 
-                               text-sm md:text-base font-opensans font-semibold 
-                               hover:bg-opacity-95 whitespace-nowrap"
+                    className="px-6 py-3 bg-gray-800 text-white text-base font-semibold hover:bg-opacity-95"
                   >
                     Apply Now
                   </Link>
@@ -130,9 +148,12 @@ export default function WorkwithUs() {
             ))}
 
             {jobs.length === 0 && (
-              <p className="text-gray-700 text-lg font-dm-sans text-center">
-                No current openings. Please check back soon.
-              </p>
+              <div className="flex flex-col items-center justify-center">
+                <p className="text-gray-700 text-lg font-dm-sans text-center">
+                  Sadly, no roles are available at the moment — but keep
+                  checking! Something interesting might swoop in soon.
+                </p>
+              </div>
             )}
           </div>
         </div>
