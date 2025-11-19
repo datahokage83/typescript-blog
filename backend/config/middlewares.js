@@ -84,6 +84,51 @@
 // ];
 
 
+// module.exports = [
+//   'strapi::errors',
+//   {
+//     name: 'strapi::security',
+//     config: {
+//       contentSecurityPolicy: {
+//         useDefaults: true,
+//         directives: {
+//           "connect-src": [
+//             "'self'",
+//             "http:",
+//             "https:",
+//             "ws:",
+//             "http://localhost:1337",
+//             "ws://localhost:1337"
+//           ],
+//           "img-src": [
+//             "'self'",
+//             "data:",
+//             "blob:",
+//             "http://localhost:1337"
+//           ],
+//           "media-src": [
+//             "'self'",
+//             "data:",
+//             "blob:",
+//             "http://localhost:1337"
+//           ],
+//           "script-src": ["'self'", "'unsafe-inline'", "http://localhost:1337"],
+//           "frame-src": ["'self'"],
+//         },
+//       },
+//     },
+//   },
+//   'strapi::cors',
+//   'strapi::poweredBy',
+//   'strapi::logger',
+//   'strapi::query',
+//   'strapi::body',
+//   'strapi::session',
+//   'strapi::favicon',
+//   'strapi::public',
+// ];
+
+
 module.exports = [
   'strapi::errors',
   {
@@ -94,30 +139,34 @@ module.exports = [
         directives: {
           "connect-src": [
             "'self'",
-            "http:",
             "https:",
             "ws:",
-            "http://localhost:1337",
-            "ws://localhost:1337"
+            "https://typescript-blog-backend.onrender.com",
+            "wss://typescript-blog-backend.onrender.com"
           ],
           "img-src": [
             "'self'",
             "data:",
             "blob:",
-            "http://localhost:1337"
+            "https://typescript-blog-backend.onrender.com"
           ],
           "media-src": [
             "'self'",
             "data:",
             "blob:",
-            "http://localhost:1337"
+            "https://typescript-blog-backend.onrender.com"
           ],
-          "script-src": ["'self'", "'unsafe-inline'", "http://localhost:1337"],
+          "script-src": [
+            "'self'",
+            "'unsafe-inline'",
+            "https://typescript-blog-backend.onrender.com"
+          ],
           "frame-src": ["'self'"],
         },
       },
     },
   },
+
   'strapi::cors',
   'strapi::poweredBy',
   'strapi::logger',
