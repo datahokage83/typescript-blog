@@ -6,7 +6,7 @@
 // const BlogCard = ({ BlogData }: any) => {
 //     const ID = BlogData.id;
 //     const { title, ShortDesc, cover } = BlogData.attributes;
-//     const imageUrl = "http://localhost:1337" + cover?.data?.attributes?.url;
+//     const imageUrl = "https://typescript-blog-backend.onrender.com" + cover?.data?.attributes?.url;
 //     const imageAlt = cover?.data?.attributes?.alternativeText || title;
 //     console.log(ID)
 //     return (
@@ -87,7 +87,7 @@ const BlogCard: React.FC<BlogCardProps> = ({ BlogData }) => {
   const { title, ShortDesc, cover } = attributes;
 
   const imageUrl = cover?.data?.attributes?.url
-    ? `http://localhost:1337${cover.data.attributes.url}`
+    ? `https://typescript-blog-backend.onrender.com${cover.data.attributes.url}`
     : "/images/placeholder.jpg"; // fallback image
   const imageAlt = cover?.data?.attributes?.alternativeText || title || "Blog Image";
 

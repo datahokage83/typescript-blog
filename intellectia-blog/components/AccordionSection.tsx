@@ -11,7 +11,7 @@
 //   useEffect(() => {
 //     const fetchFaqs = async () => {
 //       try {
-//         const res = await fetch("http://localhost:1337/api/faqs"); // ✅ Strapi endpoint
+//         const res = await fetch("https://typescript-blog-backend.onrender.com/api/faqs"); // ✅ Strapi endpoint
 //         const data = await res.json();
 //         if (data && data.data) {
 //           // Adjust to match Strapi's response structure
@@ -89,7 +89,7 @@ const AccordionSection = () => {
   useEffect(() => {
     const fetchFaqs = async () => {
       try {
-        const res = await fetch("http://localhost:1337/api/faqs"); // ✅ Strapi endpoint
+        const res = await fetch("https://typescript-blog-backend.onrender.com/api/faqs"); // ✅ Strapi endpoint
         const data = await res.json();
         if (data && data.data) {
           // Adjust to match Strapi's response structure

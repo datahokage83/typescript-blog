@@ -1,9 +1,10 @@
 'use client'
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const CardNew = ({ BlogPosts }: any ) => {
-const imageUrl = "http://localhost:1337" + BlogPosts.attributes.PracticeAreaImage.data.attributes.url;
+const imageUrl = "https://typescript-blog-backend.onrender.com" + BlogPosts.attributes.PracticeAreaImage.data.attributes.url;
 const title = BlogPosts.attributes.title;
 const desc = BlogPosts.attributes.Description;
   return (
@@ -11,12 +12,19 @@ const desc = BlogPosts.attributes.Description;
     <div className="card-container">
       
       <div className="card3">
+        <Image
+            src={imageUrl}
+            alt="Card Image"
+            width={300}    // must provide width & height
+            height={200}
+            className="card-image"
+          />
 
-        <img
+        {/* <img
           src={imageUrl}
           alt="Card Image"
           className="card-image"
-        />
+        /> */}
         <div className="card-content">
           <h2 className="card-title">{title}</h2>
           <p className="card-description font-dm-sans">

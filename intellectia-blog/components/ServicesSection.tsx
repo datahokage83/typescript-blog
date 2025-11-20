@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 const ServicesSection = () => {
   const [services, setServices] = useState<any[]>([]);
@@ -17,7 +18,13 @@ const ServicesSection = () => {
           { cache: 'no-store' }
         );
         const servicesData = await servicesRes.json();
-        setServices(servicesData.data || []);
+
+          const sortedServices = (servicesData.data || []).sort(
+          (a: any, b: any) => a.id - b.id
+        );
+
+        setServices(sortedServices);
+        // setServices(servicesData.data || []);
       } catch (error) {
         console.error('Error fetching services:', error);
       }
@@ -68,12 +75,22 @@ const ServicesSection = () => {
                   
 
                   <div className="overflow-hidden group">
-                    <img
+
+                     <Image
+                        src={imageUrl}
+                        alt={serviceTitle}
+                        width={800}        // required
+                        height={400}       // required
+                        loading="lazy"
+                        className="w-full h-36 md:h-32 object-cover transition-all duration-500 ease-in-out mt-2 md:mt-0 group-hover:h-52 md:group-hover:h-56"
+                      />
+
+                    {/* <img
                       src={imageUrl}
                       alt={serviceTitle}
                       loading="lazy"
                       className="w-full h-36 md:h-32 object-cover transition-all duration-500 ease-in-out mt-2 md:mt-0 group-hover:h-52 md:group-hover:h-56"
-                    />
+                    /> */}
                   </div>
 
 

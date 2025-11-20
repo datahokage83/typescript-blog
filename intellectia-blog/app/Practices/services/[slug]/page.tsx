@@ -10,7 +10,7 @@ import React from "react";
 
 
 async function getStrapiData(url: string) {
-  const res = await fetch("http://localhost:1337" + url);
+  const res = await fetch("https://typescript-blog-backend.onrender.com" + url);
   return await res.json();
 }
 
@@ -31,7 +31,7 @@ const PracticeDetailPage = () => {
         // Fetch Logo
         const homeData = await getStrapiData("/api/home-page?populate=*");
         const logo = homeData.data?.attributes?.Logo?.data?.attributes?.url;
-        if (logo) setLogoURL("http://localhost:1337" + logo);
+        if (logo) setLogoURL("https://typescript-blog-backend.onrender.com" + logo);
 
         // Fetch Practice
         const practiceData = await getStrapiData(
@@ -67,7 +67,7 @@ const PracticeDetailPage = () => {
   if (!practice) return <p className="text-center py-20">Loading...</p>;
 
    const practiceImage = practice.attributes.PracticeAreaImage?.data?.attributes?.url
-    ? `http://localhost:1337${practice.attributes.PracticeAreaImage.data.attributes.url}`
+    ? `https://typescript-blog-backend.onrender.com${practice.attributes.PracticeAreaImage.data.attributes.url}`
     : "/placeholder.jpg";
 
     const quote = practice.attributes.quote;
@@ -89,7 +89,7 @@ const PracticeDetailPage = () => {
 
               {quote && (
                 <p className="text-lg mt-10 text-gray-100 italic mb-4">
-                  "{quote}"
+                  {`"${quote}"`}
                 </p>
               )}
 
@@ -157,7 +157,7 @@ const PracticeDetailPage = () => {
                   <div className="grid grid-cols-1 gap-10 px-0">
                     {teamMembers.slice(0, 4).map((member: any) => {
                       const photoUrl = member.attributes.TeamMemberPhoto?.data?.attributes?.url
-                        ? `http://localhost:1337${member.attributes.TeamMemberPhoto.data.attributes.url}`
+                        ? `https://typescript-blog-backend.onrender.com${member.attributes.TeamMemberPhoto.data.attributes.url}`
                         : "/placeholder.jpg";
                       return (
                         <div
@@ -230,7 +230,7 @@ const PracticeDetailPage = () => {
                         <div className="grid grid-cols-2 sm:grid-cols-2 gap-10">
                           {teamMembers.slice(0, 4).map((member: any) => {
                             const photoUrl = member.attributes.TeamMemberPhoto?.data?.attributes?.url
-                              ? `http://localhost:1337${member.attributes.TeamMemberPhoto.data.attributes.url}`
+                              ? `https://typescript-blog-backend.onrender.com${member.attributes.TeamMemberPhoto.data.attributes.url}`
                               : "/placeholder.jpg";
                             return (
                               <div
@@ -314,8 +314,8 @@ const PracticeDetailPage = () => {
         const imageUrl =
           imgData?.data
             ? Array.isArray(imgData.data)
-              ? `http://localhost:1337${imgData.data[0]?.attributes?.url}`
-              : `http://localhost:1337${imgData.data?.attributes?.url}`
+              ? `https://typescript-blog-backend.onrender.com${imgData.data[0]?.attributes?.url}`
+              : `https://typescript-blog-backend.onrender.com${imgData.data?.attributes?.url}`
             : "https://via.placeholder.com/400x250?text=No+Image";
 
         return (

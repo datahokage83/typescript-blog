@@ -40,7 +40,7 @@ interface SubArea {
 
 // Helper function to fetch data from Strapi
 async function getStrapiData(url: string) {
-  const baseURL = 'http://localhost:1337';
+  const baseURL = 'https://typescript-blog-backend.onrender.com';
   const res = await fetch(baseURL + url);
   const data = await res.json();
   return data;
@@ -62,7 +62,7 @@ const FocusedAreaPage = () => {
         // Fetch site logo
         const homeRes = await getStrapiData('/api/home-page?populate=*');
         const logo = homeRes.data?.attributes?.Logo?.data?.attributes?.url;
-        if (logo) setLogoURL('http://localhost:1337' + logo);
+        if (logo) setLogoURL('https://typescript-blog-backend.onrender.com' + logo);
 
         if (!subAreaSlug) {
           setNotFound(true);
@@ -111,9 +111,9 @@ const FocusedAreaPage = () => {
     return (
       <div className="max-w-3xl mx-auto text-center py-20">
         <h2 className="text-2xl font-semibold mb-4">Focus Area Not Found</h2>
-        <p className="text-gray-600">We couldn’t find details for this focus area.</p>
+        <p className="text-gray-600">{`We couldn’t find details for this focus area.`}</p>
         <a href="/Practices/services/[slug]" className="text-blue-600 underline mt-4 inline-block">
-          ← Back to services
+          {`← Back to services`}
         </a>
       </div>
     );
@@ -124,8 +124,8 @@ const FocusedAreaPage = () => {
   const imgData = SubArea.attributes.SubAreaImg?.data;
   const imageUrl = imgData
     ? Array.isArray(imgData)
-      ? `http://localhost:1337${imgData[0].attributes.url}`
-      : `http://localhost:1337${imgData.attributes.url}`
+      ? `https://typescript-blog-backend.onrender.com${imgData[0].attributes.url}`
+      : `https://typescript-blog-backend.onrender.com${imgData.attributes.url}`
     : 'https://via.placeholder.com/800x600?text=No+Image';
 
   return (
@@ -189,7 +189,7 @@ const FocusedAreaPage = () => {
                     >
                       {contact.attributes.TeamMemberPhoto?.data?.attributes?.url && (
                         <img
-                          src={`http://localhost:1337${contact.attributes.TeamMemberPhoto.data.attributes.url}`}
+                          src={`https://typescript-blog-backend.onrender.com${contact.attributes.TeamMemberPhoto.data.attributes.url}`}
                           alt={contact.attributes.TeamMemberName}
                           className="w-24 h-24 object-cover rounded-full mb-3 hover:scale-105 transition-transform duration-300"
                         />
@@ -226,7 +226,7 @@ const FocusedAreaPage = () => {
                       <div className="grid grid-cols-1 gap-10 px-0">
                         {keyContacts.slice(0, 4).map((contact: any) => {
                           const photoUrl = contact.attributes.TeamMemberPhoto?.data?.attributes?.url
-                            ? `http://localhost:1337${contact.attributes.TeamMemberPhoto.data.attributes.url}`
+                            ? `https://typescript-blog-backend.onrender.com${contact.attributes.TeamMemberPhoto.data.attributes.url}`
                             : "/placeholder.jpg";
 
                           return (
@@ -304,7 +304,7 @@ const FocusedAreaPage = () => {
               {Segments.map((segment: any) => {
                 const imgData = segment.attributes.SegmentImage;
                 const imageUrl = imgData?.data?.length
-                  ? `http://localhost:1337${imgData.data[0].attributes.url}`
+                  ? `https://typescript-blog-backend.onrender.com${imgData.data[0].attributes.url}`
                   : 'https://via.placeholder.com/400x250?text=No+Image';
 
                 return (
@@ -345,7 +345,7 @@ const FocusedAreaPage = () => {
                   <div key={contact.id} className="flex flex-col items-center  p-4 ">
                     {contact.attributes.TeamMemberPhoto?.data?.attributes?.url && (
                       <img
-                        src={`http://localhost:1337${contact.attributes.TeamMemberPhoto.data.attributes.url}`}
+                        src={`https://typescript-blog-backend.onrender.com${contact.attributes.TeamMemberPhoto.data.attributes.url}`}
                         alt={contact.attributes.TeamMemberName}
                         className="w-24 h-24 object-cover rounded-full mb-3"
                       />

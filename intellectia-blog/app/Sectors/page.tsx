@@ -3,27 +3,31 @@ import Footer from "@/components/Footer/Footer";
 import VideoCarousel from "@/components/VideoCarousel"; // Client Component
 import DotIndicator from "@/components/DotIndicator"; // 👈 add this
 import { NextPage } from "next";
+import Image from "next/image";
 import Link from "next/link";
 
 // Helper to fetch sectors and homepage data (Server Component)
 async function getStrapiData(url: string) {
-  const res = await fetch("http://localhost:1337" + url, { cache: "no-cache" });
+  const res = await fetch("https://typescript-blog-backend.onrender.com" + url, { cache: "no-cache" });
   return res.json();
 }
 
 const Sectors: NextPage = async () => {
   const homeData = await getStrapiData("/api/home-page?populate=*");
   const logoURL =
-    "http://localhost:1337" + homeData.data.attributes.Logo.data.attributes.url;
+    "https://typescript-blog-backend.onrender.com" + homeData.data.attributes.Logo.data.attributes.url;
 
   const sectorData = await getStrapiData("/api/sectors?populate=SectorImg");
   const sectors =
-    sectorData?.data?.map((item: any) => ({
+    // sectorData?.data?.map((item: any) => ({
+      sectorData?.data
+      ?.sort((a: any, b: any) => a.id - b.id)   // <-- SORT BY ID ASC
+      .map((item: any) => ({
       tag: item.attributes.SectorTag,
       title: item.attributes.SectorTitle,
       slug: item.attributes.sectorslug,
       image: item.attributes.SectorImg?.data?.attributes?.url
-        ? "http://localhost:1337" +
+        ? "https://typescript-blog-backend.onrender.com" +
           item.attributes.SectorImg.data.attributes.url
         : "/images/default.jpg",
     })) || [];
@@ -31,7 +35,7 @@ const Sectors: NextPage = async () => {
   const videoData = await getStrapiData("/api/sectors-video?populate=SecVideos");
   const videos =
     videoData?.data?.attributes?.SecVideos?.data?.map(
-      (vid: any) => "http://localhost:1337" + vid.attributes.url
+      (vid: any) => "https://typescript-blog-backend.onrender.com" + vid.attributes.url
     ) || [];
 
   return (
@@ -98,11 +102,18 @@ const Sectors: NextPage = async () => {
               sectors.map((sector: any, index: number) => (
                 <Link key={index} href={`/Sectors/${sector.slug}`}>
                   <div className="flex flex-col group cursor-pointer hover:scale-[1.02] transition-transform duration-300">
-                    <img
+                    {/* <img
                       src={sector.image}
                       alt={sector.title}
                       className="w-full h-64 object-cover mb-4"
-                    />
+                    /> */}
+                    <Image
+                        src={sector.image}
+                        alt={sector.title}
+                        width={800}          // required
+                        height={500}         // required
+                        className="w-full h-64 object-cover mb-4"
+                      />
                     <span className="bg-gray-800 text-gray-100 text-sm font-medium px-4 py-2 w-fit mb-3">
                       {sector.tag}
                     </span>

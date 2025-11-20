@@ -8,7 +8,7 @@
 //       };
 
 // const CustomCarousel : NextPage<CustomCarousel> = ({ id }) => {
-//     const imageURL="http://localhost:1337"+id.attributes.url;
+//     const imageURL="https://typescript-blog-backend.onrender.com"+id.attributes.url;
 // return(
     
 //         <div>
@@ -20,17 +20,28 @@
 // export default CustomCarousel;
 'use client'
 import { NextPage } from "next";
+import Image from "next/image";
+
 
 export type CustomCarouselProps = {
   id: any; // Ideally, replace `any` with a stricter type
 };
 
 const CustomCarousel: NextPage<CustomCarouselProps> = ({ id }) => {
-  const imageURL = "http://localhost:1337" + id.attributes.url;
+  const imageURL = "https://typescript-blog-backend.onrender.com" + id.attributes.url;
 
   return (
-    <div>
-      <img src={imageURL} alt="carousel-item" />
+    // <div>
+    //   <img src={imageURL} alt="carousel-item" />
+    // </div>
+          <div className="w-full h-full">
+            <Image
+              src={imageURL}
+              alt="carousel-item"
+              width={1200}     
+              height={600}    
+              className="object-cover w-full h-full"
+            />
     </div>
   );
 };

@@ -10,9 +10,12 @@ import InternshipForm from "@/app/ContactUs/Careers/IntershipForm";
 import ApplicationForm from "@/app/ContactUs/ApplicationForm";
 import SlidingToggleButtons from "@/app/ContactUs/Careers/SlideToggleButtons";
 import Link from 'next/link';
+import Image from "next/image";
+
+
 
 async function getStrapiData(url: string) {
-  const baseURL = "http://localhost:1337";
+  const baseURL = "https://typescript-blog-backend.onrender.com";
   try {
     const response = await fetch(baseURL + url, { cache: "no-cache" });
     const data = await response.json();
@@ -34,7 +37,7 @@ export default function CareersHero() {
   //   const fetchData = async () => {
   //     const strapiHomeData = await getStrapiData("/api/home-page?populate=*");
   //     const { Logo } = strapiHomeData.data.attributes;
-  //     setLogoURL("http://localhost:1337" + Logo.data.attributes.url);
+  //     setLogoURL("https://typescript-blog-backend.onrender.com" + Logo.data.attributes.url);
   //   };
   //   fetchData();
   // }, []);
@@ -43,9 +46,10 @@ export default function CareersHero() {
   const fetchData = async () => {
     const strapiHomeData = await getStrapiData("/api/home-page?populate=*");
     const { Logo } = strapiHomeData.data.attributes;
-    const logo = "http://localhost:1337" + Logo.data.attributes.url;
+    const logo = "https://typescript-blog-backend.onrender.com" + Logo.data.attributes.url;
 
-    const img = new Image();
+    // const img = new Image();
+    const img = new window.Image();
     img.src = logo;
     img.onload = () => setLogoURL(logo);
   };
@@ -162,19 +166,19 @@ export default function CareersHero() {
           <h2 className="-mt-5 md:mt-0 text-xl md:text-20xl font-light font-dm-sans text-black tracking-wide leading-snug">
             {/* Creating groundbreaking legal solutions starts with you. We need your insight and expertise
             to help shape the future of the legal industry and beyond. */}
-            Creating groundbreaking legal solutions starts with the right team.
+           {` Creating groundbreaking legal solutions starts with the right team.
             We invite you to discover why working with us means joining a culture of 
-            excellence, collaboration, and innovation.
+            excellence, collaboration, and innovation.`}
           </h2>
  
           <div className="max-w-4xl md:max-w-5xl mx-auto">
           <p className="mt-8  text-sm md:text-lg text-black font-dm-sans leading-relaxed">
-            We aim to achieve excellence—not just for our firm, but for our clients and the
+            {`We aim to achieve excellence—not just for our firm, but for our clients and the
             communities we serve, near and far. We do this by honoring diverse perspectives
             and reimagining what’s possible in the practice of law. We bring together 
             experienced attorneys, legal researchers, strategists, and industry specialists
             to craft innovative, practical solutions for today’s—and tomorrow’s—most complex
-            legal challenges. Ready to turn legal insight into meaningful impact?
+            legal challenges. Ready to turn legal insight into meaningful impact?`}
           </p>
            </div>
           {/* Button */}
@@ -198,16 +202,25 @@ export default function CareersHero() {
               </h3>
 
               {/* Image under heading */}
-              <img
+              {/* <img
                 src="/images/lady-pose.jpg" // Replace with your actual image path
                 alt="Career Icon"
                 className="w-[80%]  h-[300px] md:h-[460px] object-cover mb-14 md:mb-4 -mt-14 md:mt-0"
                 loading="lazy"
-              />
+              /> */}
+
+              <Image
+                  src="/images/lady-pose.jpg"
+                  alt="Career Icon"
+                  width={1200}
+                  height={800}
+                  className="w-[80%] h-[300px] md:h-[460px] object-cover mb-14 md:mb-4 -mt-14 md:mt-0"
+                />
+
 
               <p className="text-gray-600  md:max-w-5xl text-base md:text-17xl font-snormal font-dm-sans -mt-6 md:mt-4 mb-10">
-                Discover roles that challenge and inspire. Whether you're starting your journey or 
-                taking the next big step, grow with a team that values innovation and impact.
+               {` Discover roles that challenge and inspire. Whether you're starting your journey or 
+                taking the next big step, grow with a team that values innovation and impact.`}
               </p>
             </div>
 
@@ -233,12 +246,20 @@ export default function CareersHero() {
       {/* Another Content Section */}
       <section className="relative w-full h-[80vh]">
         {/* Background Image */}
-        <img
+        {/* <img
           src="/images/call-girl.jpg"
           alt="Our Team"
           className="absolute inset-0 w-full h-full object-cover grayscale"
           loading="lazy"
-        />
+        /> */}
+
+        <Image
+            src="/images/call-girl.jpg"
+            alt="Our Team"
+            fill
+            className="absolute inset-0 w-full h-full  object-cover grayscale"
+            priority={false}
+          />
 
         {/* Overlay */}
         <div className="absolute inset-0 bg-black/40" />
@@ -250,7 +271,7 @@ export default function CareersHero() {
           </h2>
 
           <p className="text-gray-100  text-sm md:text-17xl font-dm-sans font-normal mb-6">
-            Discover what it’s like to work here.
+            {`Discover what it’s like to work here.`}
           </p>
 
           <button

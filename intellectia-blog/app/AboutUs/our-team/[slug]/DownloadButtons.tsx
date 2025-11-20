@@ -10,7 +10,7 @@ interface DownloadButtonsProps {
 export default function DownloadButtons({ slug }: DownloadButtonsProps) {
   const downloadFile = (type: "pdf" | "docx") => {
     // Redirects to backend API which returns file
-    window.location.href = `http://localhost:1337/api/team-members/download?slug=${slug}&type=${type}`;
+    window.location.href = `https://typescript-blog-backend.onrender.com/api/team-members/download?slug=${slug}&type=${type}`;
   };
 
   return (

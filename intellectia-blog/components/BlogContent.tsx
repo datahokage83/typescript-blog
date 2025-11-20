@@ -92,7 +92,7 @@
   
 //   const { Title } = strapiData.data.attributes;
 //   const { title, content, cover } = blog.data.attributes;
-//   const imageUrl = "http://localhost:1337" + cover?.data?.attributes?.url;
+//   const imageUrl = "https://typescript-blog-backend.onrender.com" + cover?.data?.attributes?.url;
 
 //   return (
 //     <>
@@ -237,7 +237,7 @@
 //   const { Title } = strapiData.data.attributes;
 //   const { title, content, cover } = blog.data.attributes;
 //   const imageUrl =
-//     "http://localhost:1337" + cover?.data?.attributes?.url;
+//     "https://typescript-blog-backend.onrender.com" + cover?.data?.attributes?.url;
 
 //   return (
 //     <>
@@ -291,7 +291,7 @@
 // const Page = ({ strapiData, blog }: any) => {
 //   const { Title } = strapiData.data.attributes;
 //   const { title, content, cover } = blog.data.attributes;
-//   const imageUrl = "http://localhost:1337" + cover?.data?.attributes?.url;
+//   const imageUrl = "https://typescript-blog-backend.onrender.com" + cover?.data?.attributes?.url;
 
 //   const RenderContent = (content: any[]) => {
 //     return content.map((block, i) => {
@@ -485,7 +485,7 @@ const Page = ({ strapiData, blog }: any) => {
   const { Title } = strapiData?.data?.attributes || {};
   const { title, content, cover } = blog?.data?.attributes || {};
   const imageUrl =
-    "http://localhost:1337" + (cover?.data?.attributes?.url || "");
+    "https://typescript-blog-backend.onrender.com" + (cover?.data?.attributes?.url || "");
 
   const [blogData, setBlogData] = useState<any>(null);
 
@@ -494,7 +494,7 @@ const Page = ({ strapiData, blog }: any) => {
     const fetchBlogs = async () => {
       try {
         const response = await fetch(
-          "http://localhost:1337/api/posts?populate=*"
+          "https://typescript-blog-backend.onrender.com/api/posts?populate=*"
         );
         const data = await response.json();
         setBlogData(data);

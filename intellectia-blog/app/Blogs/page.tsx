@@ -1,94 +1,3 @@
-
-// import BlogFrontend from "@/components/BlogFrontend";
-// import Footer from "@/components/Footer/Footer";
-// import Nav from "@/components/nav";
-// import type { NextPage } from "next";
-// export type BlogsType = {
-//   className?: string;
-// };
-// async function getStrapiData(url:string){
-//   const baseURL="http://localhost:1337";
-//   try{
-//     const response = await fetch(baseURL + url,{cache:'no-cache'});
-//     const data= await response.json();
-//     return data;
-//   }catch(error){
-//     console.error(error);
-//   }
-// }
- 
-
-// const Blogs: NextPage<BlogsType> = async ({ className = "" }) => {
-//   const strapiData = await getStrapiData("/api/home-page?populate=*");
-//   const strapiBlogData = await getStrapiData("/api/posts?populate=*");
-//   const {Title, MissionLine,Logo} = strapiData.data.attributes;
-//   const logoURL="http://localhost:1337"+Logo.data.attributes.url
-//   console.log(strapiBlogData.data.attributes)
-//   return (
-//     <>
-//     <Nav logoURL={logoURL}/>
-    
-//     {/* Page Header */}
-//     {/* <div className="bg-gradient-to-r from-blue-50 to-indigo-100 py-8 sm:py-12 lg:py-16"> */}
-//     <div className="bg-gray-800 py-8 sm:py-12 lg:py-16">
-
-//       {/* <div className="container mx-auto px-4 sm:px-6 lg:px-8"> */}
-//       {/* <div className="mx-auto px-4 sm:px-6 lg:px-8">
-        
-//         <div className="text-center">
-//           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-//             Resources & <span className="text-blue-600">Insights</span>
-//           </h1>
-//           <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
-//             Stay informed with our latest legal insights, industry updates, and expert analysis
-//           </p>
-//         </div>
-//       </div> */}
-//       <p className="font-dm-sans font-medium text-20xl px-12 w-[660px] text-white">Explore our collection of articles, 
-//         guides, and insights designed to help you navigate complex legal matters with confidence.</p>
-
-//        <div className="max-w-7xl mx-auto flex flex-row justify-end items-center gap-6">
-//         <div>
-//           <img
-//             src="/images/book.jpg"
-//             alt="Law books and gavel"
-//             className="w-40 max-w-xl  shadow-lg object-cover"
-//             loading="lazy"
-//           />
-//         </div>
-
-//         <div>
-//           <img
-//            src="/images/lawandorder.jpg"
-//             alt="lawandorder"
-//             className="w-44 max-w-xl  shadow-lg object-cover"
-//             loading="lazy"
-//           />
-//         </div>
-
-//         <div>
-//           <img
-//             src="/images/read.jpg"
-//              alt="reading"
-//             className="w-40 max-w-xl  shadow-lg object-cover"
-//             loading="lazy"
-//           />
-//         </div>
-        
-//       </div>
-//        <p className="font-dm-sans font-medium text-17xl px-12 text-white">Stay informed, Stay protected.</p>
-//     </div>
-    
-//     <BlogFrontend strapiBlogData={strapiBlogData}></BlogFrontend>
-    
-//     <Footer/>
-//     </>
-//   );
-// };
-
-// export default Blogs;
-
-
 import AccordionSection from "@/components/AccordionSection";
 import BlogSlider from "@/components/BlogSlider";
 import EmailSection from "@/components/EmailSection";
@@ -96,13 +5,15 @@ import Footer from "@/components/Footer/Footer";
 import Nav from "@/components/nav";
 import { Accordion } from "@material-ui/core";
 import type { NextPage } from "next";
+import Image from "next/image";
+
 
 export type BlogsType = {
   className?: string;
 };
 
 async function getStrapiData(url: string) {
-  const baseURL = "http://localhost:1337";
+  const baseURL = "https://typescript-blog-backend.onrender.com";
   try {
     const response = await fetch(baseURL + url, { cache: "no-cache" });
     const data = await response.json();
@@ -112,13 +23,14 @@ async function getStrapiData(url: string) {
   }
 }
 
-const Blogs: NextPage<BlogsType> = async ({ className = "" }) => {
+export default async function Blogs() {
   const homeData = await getStrapiData("/api/home-page?populate=*");
   const blogData = await getStrapiData("/api/posts?populate=*");
 
   const { Title, MissionLine, Logo } = homeData.data.attributes;
-  const logoURL = "http://localhost:1337" + Logo.data.attributes.url;
-
+  const logoURL =
+    "https://typescript-blog-backend.onrender.com" +
+    Logo.data.attributes.url;
   return (
     <>
       <Nav logoURL={logoURL} />
@@ -132,7 +44,7 @@ const Blogs: NextPage<BlogsType> = async ({ className = "" }) => {
 
         {/* Law images */}
         <div className="max-w-7xl mx-5 md:mx-auto flex flex-row justify-end items-center gap-4 md:gap-6">
-          <img
+          {/* <img
             src="/images/book.jpg"
             alt="Law books and gavel"
             className="w-24 md:w-40 cursor-pointer shadow-lg object-cover"
@@ -149,7 +61,34 @@ const Blogs: NextPage<BlogsType> = async ({ className = "" }) => {
             alt="Reading Law"
             className="w-24 md:w-40 cursor-pointer shadow-lg object-cover"
             loading="lazy"
-          />
+          /> */}\
+          <Image
+              src="/images/book.jpg"
+              alt="Law books and gavel"
+              width={200}
+              height={200}
+              className="w-24 md:w-40 cursor-pointer shadow-lg object-cover"
+              loading="lazy"
+            />
+
+            <Image
+              src="/images/lawandorder.jpg"
+              alt="Law and Order"
+              width={250}
+              height={250}
+              className="w-28 md:w-44 cursor-pointer shadow-lg object-cover"
+              loading="lazy"
+            />
+
+            <Image
+              src="/images/read.jpg"
+              alt="Reading Law"
+              width={200}
+              height={200}
+              className="w-24 md:w-40 cursor-pointer shadow-lg object-cover"
+              loading="lazy"
+            />
+
         </div>
 
         <p className="relative hidden lg:flex font-dm-sans font-semibold text-17xl px-12 text-white">
@@ -188,11 +127,17 @@ const Blogs: NextPage<BlogsType> = async ({ className = "" }) => {
         <div className="relative hidden lg:flex w-1/2">
 
         {/* <div className="relative hidden lg:flex w-1/2 h-[45pc] items-end justify-center"> */}
-            <img
+            {/* <img
               src="/images/lady.jpg"
               alt="Agriculture background"
               className="w-full h-full object-cover"
               loading="lazy"
+            /> */}
+            <Image
+              src="/images/lady.jpg"
+              alt="Agriculture background"
+              fill
+              className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-black/20"></div>
             <div className="absolute inset-0 flex flex-col items-center justify-end text-white pb-8">
@@ -203,7 +148,7 @@ const Blogs: NextPage<BlogsType> = async ({ className = "" }) => {
 
       </section>
 
-      {/* <EmailSection/> */}
+      
 
       <section className="bg-gray-100 text-white py-20 px-6 flex flex-col items-center ">
           {/* Header */}
@@ -247,11 +192,17 @@ const Blogs: NextPage<BlogsType> = async ({ className = "" }) => {
 
             {/* Right Image */}
             <div className="hidden relative md:flex md:w-1/2 h-64 md:h-[450px]">
-              <img
+              {/* <img
                 src="/images/plane.jpg"
                 alt="Newsroom Insight"
                 className="w-full h-full object-cover"
-              />
+              /> */}
+              <Image
+                  src="/images/plane.jpg"
+                  alt="Newsroom Insight"
+                  fill
+                  className="w-full h-full object-cover"
+                />
             </div>
           </div>
         </section>
@@ -261,4 +212,3 @@ const Blogs: NextPage<BlogsType> = async ({ className = "" }) => {
   );
 };
 
-export default Blogs;

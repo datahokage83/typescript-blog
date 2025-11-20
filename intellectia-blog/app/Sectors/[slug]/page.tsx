@@ -3,9 +3,10 @@ import Footer from "@/components/Footer/Footer";
 import { FaLinkedinIn, FaFacebookSquare, FaInstagram, FaWhatsapp } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import Link from "next/link";
+import Image from "next/image";
 
 async function getStrapiData(url: string) {
-  const res = await fetch("http://localhost:1337" + url, { cache: "no-cache" });
+  const res = await fetch("https://typescript-blog-backend.onrender.com" + url, { cache: "no-cache" });
   return res.json();
 }
 
@@ -15,7 +16,7 @@ export default async function SectorPage({ params }: { params: { slug: string } 
   // Logo
   const homeData = await getStrapiData("/api/home-page?populate=*");
   const logoURL =
-    "http://localhost:1337" + homeData?.data?.attributes?.Logo?.data?.attributes?.url;
+    "https://typescript-blog-backend.onrender.com" + homeData?.data?.attributes?.Logo?.data?.attributes?.url;
 
   // Current sector
   const sectorRes = await getStrapiData(
@@ -28,7 +29,7 @@ export default async function SectorPage({ params }: { params: { slug: string } 
   }
 
   const imageUrl = sector?.SectorImg?.data
-    ? "http://localhost:1337" + sector.SectorImg.data.attributes.url
+    ? "https://typescript-blog-backend.onrender.com" + sector.SectorImg.data.attributes.url
     : "/images/default.jpg";
 
   // Fetch all sectors (future-safe)
@@ -46,11 +47,20 @@ export default async function SectorPage({ params }: { params: { slug: string } 
             {sector?.SectorTitle || "Sector"}
           </h1>
 
-          <img
+          {/* <img
             src={imageUrl}
             alt={sector?.SectorTitle}
             className="w-full h-96 object-cover"
+          /> */}
+
+          <Image
+            src={imageUrl}
+            alt={sector?.SectorTitle || "Sector image"}
+            width={1600}
+            height={900}
+            className="w-full h-96 object-cover"
           />
+
 
           {/* SHARE ICONS */}
           <div className="flex flex-col mt-4 md:mt-6 mb-6 text-gray-500">
@@ -132,7 +142,15 @@ export default async function SectorPage({ params }: { params: { slug: string } 
             </div>
 
             <div className="w-48 h-32 md:w-36 md:h-36 bg-black rounded-sm shadow-md mt-6 md:mt-0">
-              <img src="/images/bird.jpg" className="w-full h-full object-cover" />
+              {/* <img src="/images/bird.jpg" className="w-full h-full object-cover" /> */}
+              <Image
+                  src="/images/bird.jpg"
+                  alt="Career Inspiration Image"
+                  width={500}
+                  height={400}
+                  className="w-full h-full object-cover"
+                />
+
             </div>
           </div>
         </section>
@@ -144,9 +162,14 @@ export default async function SectorPage({ params }: { params: { slug: string } 
           </h2>
 
           <div className="flex flex-col gap-3 text-gray-700 font-opensans">
-            {sectors
+            {/* {sectors
               .filter((sec: any) => sec.attributes.sectorslug !== slug)
+              .map((sec: any) => ( */}
+              {sectors
+              .filter((sec: any) => sec.attributes.sectorslug !== slug)
+              .sort((a: any, b: any) => a.id - b.id)   // ✅ Sort by ID ascending
               .map((sec: any) => (
+
                 <Link
                   key={sec.id}
                   href={`/Sectors/${sec.attributes.sectorslug}`}

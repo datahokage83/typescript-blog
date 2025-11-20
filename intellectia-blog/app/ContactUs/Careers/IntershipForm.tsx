@@ -34,8 +34,7 @@ export default function InternshipForm({ onClose }: InternshipFormProps) {
    const [loading, setLoading] = useState(false); 
   
 
-  const pathname = usePathname();
-  if (pathname !== "/ContactUs/Careers") return null;
+  
 
   useEffect(() => {
     if (loading) {
@@ -45,17 +44,9 @@ export default function InternshipForm({ onClose }: InternshipFormProps) {
     }
   }, [loading]);
 
-//     useEffect(() => {
-//   // Disable scroll on open
-//   document.body.style.overflow = 'hidden';
+  const pathname = usePathname();
+  if (pathname !== "/ContactUs/Careers") return null;
 
-//   // Re-enable scroll on unmount
-//   return () => {
-//     document.body.style.overflow = '';
-//   };
-// }, []);
-
- // Example validation function
 
 
    function handleChange(field: string, value: string | File) {
@@ -370,6 +361,9 @@ const handleSubmit = async () => {
                 
               </div>
             )} 
+
+            
+
         
         {showSuccessPopup && (
             <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
@@ -599,9 +593,9 @@ const handleSubmit = async () => {
             >
               {!selectedFile ? (
                 <>
-                  <p className="mb-2 text-gray-500">Choose a file or drag & drop it here.</p>
-                  <p className="mb-4 text-gray-500">pdf, doc, docx – Up to 5MB</p>
-                  <p className="mb-4 text-gray-500">Please ensure your uploaded resume is named using the format: "YourName_Resume.pdf"</p>
+                  <p className="mb-2 text-gray-500">{`Choose a file or drag & drop it here.`}</p>
+                  <p className="mb-4 text-gray-500">{`pdf, doc, docx – Up to 5MB`}</p>
+                  <p className="mb-4 text-gray-500">{`Please ensure your uploaded resume is named using the format: "YourName_Resume.pdf"`}</p>
                  
                   {error && (
                     <p className="mb-4 text-red-600 text-2xl">{error}</p>

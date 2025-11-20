@@ -6,7 +6,7 @@ import Footer from "@/components/Footer/Footer";
 import Link from "next/link";
 
 async function getStrapiData(url: string) {
-  const baseURL = "http://localhost:1337";
+  const baseURL = "https://typescript-blog-backend.onrender.com";
   try {
     const response = await fetch(baseURL + url, { cache: "no-store" });
     return await response.json();
@@ -27,7 +27,7 @@ export default function WorkwithUs() {
 
       if (homeRes?.data?.attributes?.Logo?.data?.attributes?.url) {
         const logoUrl = homeRes.data.attributes.Logo.data.attributes.url;
-        setLogoURL("http://localhost:1337" + logoUrl);
+        setLogoURL("https://typescript-blog-backend.onrender.com" + logoUrl);
       }
 
       /* Fetch Job Listings */

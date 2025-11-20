@@ -21,10 +21,17 @@ const AboutContainer: NextPage<AboutContainerType> = ({ className = "" }) => {
           <div className="self-stretch flex flex-col items-center justify-start gap-[40px]">
             <div className="self-stretch flex flex-col items-center justify-start gap-[40px]">
               <div className="w-[1130px] h-80 flex flex-row items-start justify-center gap-[40px] mdN">
-                <img
+                {/* <img
                   className="self-stretch flex-1 relative max-w-full overflow-hidden max-h-full object-cover"
                   alt=""
                   src="/frame-15@2x.png"
+                /> */}
+                I<Image
+                  className="self-stretch flex-1 relative max-w-full overflow-hidden max-h-full object-cover"
+                  src="/frame-15@2x.png"
+                  alt=""
+                  width={1200}
+                  height={800}
                 />
                 <Image
                   className="self-stretch flex-1 relative max-w-full overflow-hidden max-h-full object-cover"
@@ -35,10 +42,17 @@ const AboutContainer: NextPage<AboutContainerType> = ({ className = "" }) => {
                   src="/frame-20@2x.png"
                 />
               </div>
-              <img
+              {/* <img
                 className="self-stretch relative max-w-full overflow-hidden h-80 shrink-0 object-cover"
                 alt=""
                 src="/frame-14@2x.png"
+              /> */}
+              <Image
+                className="self-stretch relative max-w-full overflow-hidden h-80 shrink-0 object-cover"
+                src="/frame-14@2x.png"
+                alt=""
+                width={1600}
+                height={800}
               />
             </div>
             <div className="w-[1120px] flex flex-col items-start justify-center gap-[24px] mdN">

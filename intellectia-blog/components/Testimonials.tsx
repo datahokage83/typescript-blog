@@ -12,9 +12,11 @@ export default function Testimonials() {
   useEffect(() => {
     const fetchTestimonials = async () => {
       try {
-        const res = await fetch('http://localhost:1337/api/testimonials?populate=image');
+        const res = await fetch('https://typescript-blog-backend.onrender.com/api/testimonials?populate=image');
         const data = await res.json();
-        setTestimonials(data.data || []);
+        // setTestimonials(data.data || []);
+        setTestimonials((data.data || []).sort((a: any, b: any) => a.id - b.id));
+
       } catch (err) {
         console.error('Error fetching testimonials:', err);
       }
@@ -47,7 +49,7 @@ export default function Testimonials() {
           {testimonials.map((item: any) => {
             const imageUrl =
               item.attributes?.image?.data?.[0]?.attributes?.url
-                ? `http://localhost:1337${item.attributes.image.data[0].attributes.url}`
+                ? `https://typescript-blog-backend.onrender.com${item.attributes.image.data[0].attributes.url}`
                 : '/images/default.jpg';
 
             return (
@@ -67,11 +69,20 @@ export default function Testimonials() {
                 <div className="flex items-center justify-between mt-6">
                   <div className="flex items-center gap-4 ">
                     <div className="w-14 md:w-14 h-14 md:h-14 overflow-hidden">
-                      <img
+                      {/* <img
                         src={imageUrl}
                         alt={item.attributes.name}
                         className="object-cover w-full h-full"
-                      />
+                      /> */}
+                           <Image
+                                src={imageUrl}
+                                alt={item.attributes.name}
+                                width={56}
+                                height={56}
+                                className="object-cover  w-full h-full"
+                               
+                              />
+
                     </div>
                     <div className='font-opensans'>
                       <h4 className="font-semibold text-gray-50 text-sm md:text-3xl">

@@ -31,13 +31,13 @@ export default function CareersSection() {
         
         <div className="mb-6">
           <button className="inline-flex text-sm border font-dm-sans border-black rounded-full px-10 py-3 font-bold hover:bg-black hover:text-white transition -ml-1">
-            We're hiring!
+            {`We're hiring!`}
           </button>
 
 
           <h1 className="text-20xl mt-6 font-semibold">Be part of our mission</h1>
           <p className="text-black mt-5 font-medium text-lg mb-5">
-            We're looking for passionate people to join us on our mission.
+           {` We're looking for passionate people to join us on our mission.`}
           </p>
         </div>
 

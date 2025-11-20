@@ -17,7 +17,7 @@ const Disclaimer:NextPage<DisclaimerType> =({disclaimer}) => {
 
 
   const [open, setOpen] = useState<boolean>(false);
-  //const baseURL = "http://localhost:1337";
+  //const baseURL = "https://typescript-blog-backend.onrender.com";
 
   useEffect(() => {
     const accepted = localStorage.getItem('disclaimer-accepted')

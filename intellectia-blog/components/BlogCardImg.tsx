@@ -3,7 +3,7 @@ import Image from 'next/image';
 import React from "react";
 const BlogCardImg = ({ BlogData }: any) => {
     let ID = BlogData.id;
-    const imageUrl = "http://localhost:1337" + BlogData.attributes.cover.data.attributes.url;
+    const imageUrl = "https://typescript-blog-backend.onrender.com" + BlogData.attributes.cover.data.attributes.url;
     console.log(ID)
     return (
         <div className="rounded-lg shadow-md p-4 mb-4 overflow-hidden border border-gray-600 cursor-pointer">

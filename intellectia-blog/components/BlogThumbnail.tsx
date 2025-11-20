@@ -32,7 +32,7 @@ const BlogThumbnail: React.FC<BlogThumbnailProps> = ({ BlogData }) => {
   const { title, cover } = attributes;
 
   const imageUrl = cover?.data?.attributes?.url
-    ? `http://localhost:1337${cover.data.attributes.url}`
+    ? `https://typescript-blog-backend.onrender.com${cover.data.attributes.url}`
     : "/images/placeholder.jpg";
 
   const imageAlt = cover?.data?.attributes?.alternativeText || title || "Blog Image";
