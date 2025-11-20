@@ -2,12 +2,19 @@
 import { useState, useEffect, useRef } from 'react';
 import type { NextPage } from "next";
 // MUI
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
+// import Button from '@material-ui/core/Button';
+// import Dialog from '@material-ui/core/Dialog';
+// import DialogActions from '@material-ui/core/DialogActions';
+// import DialogContent from '@material-ui/core/DialogContent';
+// import DialogContentText from '@material-ui/core/DialogContentText';
+// import DialogTitle from '@material-ui/core/DialogTitle';
+
+import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 
 export type DisclaimerType = {
     disclaimer?: string;
@@ -25,9 +32,18 @@ const Disclaimer:NextPage<DisclaimerType> =({disclaimer}) => {
     else { setOpen(true) }
   }, []);
 
-  const handleClose = () => {
-    setOpen(false);
-  };
+  // const handleClose = () => {
+  //   setOpen(false);
+  // };
+
+  const handleClose = (event?: {}, reason?: "backdropClick" | "escapeKeyDown") => {
+  // Prevent closing on backdrop click or Escape key
+  if (reason === "backdropClick" || reason === "escapeKeyDown") {
+    return;
+  }
+  setOpen(false);
+};
+
 
   const descriptionElementRef = useRef<HTMLElement>(null);
   useEffect(() => {
@@ -54,8 +70,8 @@ const Disclaimer:NextPage<DisclaimerType> =({disclaimer}) => {
     scroll='paper'
     aria-labelledby="scroll-dialog-title"
     aria-describedby="scroll-dialog-description"
-    disableBackdropClick
-    disableEscapeKeyDown
+    // disableBackdropClick
+    // disableEscapeKeyDown
     maxWidth='lg'
   >
     <DialogTitle id="scroll-dialog-title">DISCLAIMER AND CONSENT</DialogTitle>
