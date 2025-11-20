@@ -3,7 +3,6 @@ import BlogSlider from "@/components/BlogSlider";
 import EmailSection from "@/components/EmailSection";
 import Footer from "@/components/Footer/Footer";
 import Nav from "@/components/nav";
-import { Accordion } from "@material-ui/core";
 import type { NextPage } from "next";
 import Image from "next/image";
 
