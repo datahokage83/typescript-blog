@@ -17,7 +17,7 @@
     "@strapi/plugin-users-permissions": "4.25.1",
     "@strapi/provider-email-nodemailer": "^5.21.0",
     "@strapi/provider-email-sendmail": "^5.21.0",
-    "@strapi/provider-upload-cloudinary": "^5.31.2",
+    "@strapi/provider-upload-cloudinary": "^4.25.1",
     "@strapi/strapi": "4.25.1",
     "better-sqlite3": "8.6.0",
     "cacheable-request": "^13.0.9",
