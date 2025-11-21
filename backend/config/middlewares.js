@@ -92,8 +92,10 @@ module.exports = [
     config: {
       enabled: true,
       origin: [
-        '*', // allow everything OR replace with frontend domain
-        // "https://your-frontend.vercel.app"
+         "http://localhost:3000",
+          "https://typescript-blog-pib8.vercel.app/",
+          "https://typescript-blog-hazel.vercel.app/",
+
       ],
       methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
       headers: ['Content-Type', 'Authorization', 'Origin', 'Accept'],
