@@ -17,6 +17,7 @@
     "@strapi/plugin-users-permissions": "4.25.1",
     "@strapi/provider-email-nodemailer": "^5.21.0",
     "@strapi/provider-email-sendmail": "^5.21.0",
+    "@strapi/provider-upload-cloudinary": "^5.31.2",
     "@strapi/strapi": "4.25.1",
     "better-sqlite3": "8.6.0",
     "cacheable-request": "^13.0.9",
@@ -35,7 +36,6 @@
     "strapi-plugin-import-export-entries": "^1.23.1",
     "strapi-plugin-migrate": "^3.6.3",
     "strapi-provider-email-mailjet": "^4.0.0",
-    "strapi-provider-upload-cloudinary": "^3.6.11",
     "styled-components": "5.3.3"
   },
   "author": {
