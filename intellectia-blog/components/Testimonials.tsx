@@ -47,10 +47,15 @@ export default function Testimonials() {
           whileTap={{ cursor: 'grabbing' }}
         >
           {testimonials.map((item: any) => {
+            // const imageUrl =
+            //   item.attributes?.image?.data?.[0]?.attributes?.url
+            //     ? `https://typescript-blog-backend.onrender.com${item.attributes.image.data[0].attributes.url}`
+            //     : '/images/default.jpg';
             const imageUrl =
-              item.attributes?.image?.data?.[0]?.attributes?.url
-                ? `https://typescript-blog-backend.onrender.com${item.attributes.image.data[0].attributes.url}`
-                : '/images/default.jpg';
+                item.attributes?.image?.data?.[0]?.attributes?.url
+                  ? item.attributes.image.data[0].attributes.url
+                  : '/images/default.jpg';
+
 
             return (
               <motion.div
