@@ -60,9 +60,13 @@ module.exports = [
           "connect-src": [
             "'self'",
             "https:",
+            "http:",
             "ws:",
-            "https://typescript-blog-backend.onrender.com",
-            "wss://typescript-blog-backend.onrender.com"
+            "wss:",
+            "http://localhost:3000",
+            "https://typescript-blog-pib8.vercel.app",
+            "https://typescript-blog-hazel.vercel.app",
+            "https://typescript-blog-backend.onrender.com"
           ],
           "img-src": [
             "'self'",
@@ -92,10 +96,9 @@ module.exports = [
     config: {
       enabled: true,
       origin: [
-         "http://localhost:3000",
-          "https://typescript-blog-pib8.vercel.app/",
-          "https://typescript-blog-hazel.vercel.app/",
-
+        "http://localhost:3000",
+        "https://typescript-blog-pib8.vercel.app",
+        "https://typescript-blog-hazel.vercel.app"
       ],
       methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
       headers: ['Content-Type', 'Authorization', 'Origin', 'Accept'],
