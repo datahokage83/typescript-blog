@@ -35,6 +35,7 @@
     "strapi-plugin-import-export-entries": "^1.23.1",
     "strapi-plugin-migrate": "^3.6.3",
     "strapi-provider-email-mailjet": "^4.0.0",
+    "strapi-provider-upload-cloudinary": "^3.6.11",
     "styled-components": "5.3.3"
   },
   "author": {
