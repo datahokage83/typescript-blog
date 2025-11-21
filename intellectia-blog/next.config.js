@@ -7,10 +7,38 @@
 
 // module.exports = nextConfig;
 
+// /** @type {import('next').NextConfig} */
+// const nextConfig = {
+//   images: {
+//     unoptimized: true, // Best free fix (stops Next.js optimizer from fetching)
+//     remotePatterns: [
+//       {
+//         protocol: "http",
+//         hostname: "localhost",
+//         port: "1337",
+//         pathname: "/uploads/**",
+//       },
+//       {
+//         protocol: "https",
+//         hostname: "typescript-blog-backend.onrender.com",
+//         pathname: "/uploads/**",
+//       },
+//       {
+//         protocol: "https",
+//         hostname: "via.placeholder.com",
+//         pathname: "/**",
+//       }
+//     ],
+//   },
+// };
+
+// module.exports = nextConfig;
+
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    unoptimized: true, // Best free fix (stops Next.js optimizer from fetching)
+    unoptimized: true, // this is fine
     remotePatterns: [
       {
         protocol: "http",
@@ -26,6 +54,11 @@ const nextConfig = {
       {
         protocol: "https",
         hostname: "via.placeholder.com",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "res.cloudinary.com",
         pathname: "/**",
       }
     ],
