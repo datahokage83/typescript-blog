@@ -25,10 +25,21 @@ export default function WorkwithUs() {
       /* Fetch Logo */
       const homeRes = await getStrapiData("/api/home-page?populate=*");
 
-      if (homeRes?.data?.attributes?.Logo?.data?.attributes?.url) {
-        const logoUrl = homeRes.data.attributes.Logo.data.attributes.url;
-        setLogoURL("https://typescript-blog-backend.onrender.com" + logoUrl);
-      }
+      // if (homeRes?.data?.attributes?.Logo?.data?.attributes?.url) {
+      //   const logoUrl = homeRes.data.attributes.Logo.data.attributes.url;
+      //   setLogoURL("https://typescript-blog-backend.onrender.com" + logoUrl);
+      // }
+
+      const rawLogo = homeRes?.data?.attributes?.Logo?.data?.attributes?.url;
+
+// Check Cloudinary OR Strapi local
+      const LogoURL = rawLogo
+        ? rawLogo.startsWith("http")              // Cloudinary or external URL
+          ? rawLogo
+          : "https://typescript-blog-backend.onrender.com" + rawLogo // Strapi local
+        : "/logo.png"; // fallback
+
+      setLogoURL(LogoURL);
 
       /* Fetch Job Listings */
       const jobRes = await getStrapiData("/api/job-listings?populate=*");

@@ -31,9 +31,17 @@ const BlogThumbnail: React.FC<BlogThumbnailProps> = ({ BlogData }) => {
   const { id, attributes } = BlogData;
   const { title, cover } = attributes;
 
-  const imageUrl = cover?.data?.attributes?.url
-    ? `https://typescript-blog-backend.onrender.com${cover.data.attributes.url}`
-    : "/images/placeholder.jpg";
+  // const imageUrl = cover?.data?.attributes?.url
+  //   ? `https://typescript-blog-backend.onrender.com${cover.data.attributes.url}`
+  //   : "/images/placeholder.jpg";
+    const rawUrl = cover?.data?.attributes?.url;
+
+    const imageUrl = rawUrl
+      ? rawUrl.startsWith("http")
+        ? rawUrl
+        : "https://typescript-blog-backend.onrender.com" + rawUrl
+      : "/images/placeholder.jpg";
+
 
   const imageAlt = cover?.data?.attributes?.alternativeText || title || "Blog Image";
 

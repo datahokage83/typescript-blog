@@ -35,7 +35,11 @@ const Practice = () => {
           homeRes.json(),
         ]);
 
-        setPracticeAreas(practiceData?.data || []);
+        // setPracticeAreas(practiceData?.data || []);
+        setPracticeAreas(
+          (practiceData?.data || []).sort((a: any, b: any) => a.id - b.id)
+        );
+
         // setLogoURL(baseURL + homeData.data.attributes.Logo.data.attributes.url);
             const cloudinaryLogo = homeData?.data?.attributes?.Logo?.data?.attributes?.url;
             setLogoURL(cloudinaryLogo || "");

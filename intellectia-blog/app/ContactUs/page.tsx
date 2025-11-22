@@ -49,8 +49,18 @@ const ContactUs = (): JSX.Element => {
   useEffect(() => {
     const fetchData = async () => {
       const strapiHomeData = await getStrapiData("/api/home-page?populate=*");
-      const { Logo } = strapiHomeData.data.attributes;
-      setLogoURL("https://typescript-blog-backend.onrender.com" + Logo.data.attributes.url);
+       const { Logo } = strapiHomeData.data.attributes;
+      // setLogoURL("https://typescript-blog-backend.onrender.com" + Logo.data.attributes.url);
+      const rawLogo = strapiHomeData?.data?.attributes?.Logo?.data?.attributes?.url;
+
+        const logoURL = rawLogo
+          ? rawLogo.startsWith("http")
+            ? rawLogo
+            : "https://typescript-blog-backend.onrender.com" + rawLogo
+          : "/logo.png"; // fallback
+
+        setLogoURL(logoURL);
+
     };
     fetchData();
   }, []);

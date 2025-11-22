@@ -60,7 +60,7 @@ export default async function Blogs() {
             alt="Reading Law"
             className="w-24 md:w-40 cursor-pointer shadow-lg object-cover"
             loading="lazy"
-          /> */}\
+          /> */}
           <Image
               src="/images/book.jpg"
               alt="Law books and gavel"

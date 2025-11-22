@@ -38,7 +38,20 @@ const AboutUs = () => {
       const homeData = await getStrapiData("/api/home-page?populate=*");
       const teamData = await getStrapiData("/api/team-members?populate=Teampracticeareas,TeamMemberPhoto,sectors");
 
-      setLogoURL("https://typescript-blog-backend.onrender.com" + homeData.data.attributes.Logo.data.attributes.url);
+      // setLogoURL("https://typescript-blog-backend.onrender.com" + homeData.data.attributes.Logo.data.attributes.url);
+
+      const rawLogo = homeData?.data?.attributes?.Logo?.data?.attributes?.url;
+
+      const logoURL = rawLogo
+        ? rawLogo.startsWith("http")
+          ? rawLogo
+          : "https://typescript-blog-backend.onrender.com" + rawLogo
+        : "/logo.png"; // fallback
+
+      setLogoURL(logoURL);
+
+
+
       setDesc(homeData.data.attributes.desc);
 
       setTeamMembers(teamData.data || []);

@@ -46,12 +46,22 @@ export default function CareersHero() {
   const fetchData = async () => {
     const strapiHomeData = await getStrapiData("/api/home-page?populate=*");
     const { Logo } = strapiHomeData.data.attributes;
-    const logo = "https://typescript-blog-backend.onrender.com" + Logo.data.attributes.url;
+    // const logo = "https://typescript-blog-backend.onrender.com" + Logo.data.attributes.url;
+    const rawLogo = strapiHomeData?.data?.attributes?.Logo?.data?.attributes?.url;
+
+        const logoURL = rawLogo
+          ? rawLogo.startsWith("http")
+            ? rawLogo
+            : "https://typescript-blog-backend.onrender.com" + rawLogo
+          : "/logo.png"; // fallback
+
+        setLogoURL(logoURL);
+
 
     // const img = new Image();
-    const img = new window.Image();
-    img.src = logo;
-    img.onload = () => setLogoURL(logo);
+    // const img = new window.Image();
+    // img.src = logo;
+    // img.onload = () => setLogoURL(logo);
   };
   fetchData();
 }, []);
