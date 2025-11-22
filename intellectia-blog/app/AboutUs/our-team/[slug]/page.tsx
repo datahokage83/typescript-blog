@@ -47,6 +47,12 @@ async function fetchStrapi(path: string, cache: RequestCache = "no-store") {
   return res.json();
 }
 
+function getSafeUrl(raw?: string | null) {
+  if (!raw) return "/placeholder.jpg";
+  if (raw.startsWith("http")) return raw;
+  return `${process.env.NEXT_PUBLIC_STRAPI_URL}${raw}`;
+}
+
 export default async function TeamMemberPage({ params }: PageProps) {
   try {
     const slug = params.slug.trim().toLowerCase();
@@ -63,22 +69,40 @@ export default async function TeamMemberPage({ params }: PageProps) {
 
     const member: TeamMember = memberData.data[0];
 
-    const logoURL = homeData?.data?.attributes?.Logo?.data?.attributes?.url
-      ? `https://typescript-blog-backend.onrender.com${homeData.data.attributes.Logo.data.attributes.url}`
-      : undefined;
+    // const logoURL = homeData?.data?.attributes?.Logo?.data?.attributes?.url
+    //   ? `https://typescript-blog-backend.onrender.com${homeData.data.attributes.Logo.data.attributes.url}`
+    //   : undefined;
 
-    const imageUrl = member.attributes.TeamMemberPhoto?.data?.attributes?.url
-      ? `https://typescript-blog-backend.onrender.com${member.attributes.TeamMemberPhoto.data.attributes.url}`
-      : "/placeholder.jpg";
+    const logoRaw = homeData?.data?.attributes?.Logo?.data?.attributes?.url;
+    const logoURL = getSafeUrl(logoRaw);
+
+
+    // const imageUrl = member.attributes.TeamMemberPhoto?.data?.attributes?.url
+    //   ? `https://typescript-blog-backend.onrender.com${member.attributes.TeamMemberPhoto.data.attributes.url}`
+    //   : "/placeholder.jpg";
+
+      const photoRaw = member.attributes.TeamMemberPhoto?.data?.attributes?.url;
+      const imageUrl = getSafeUrl(photoRaw);
+
+
+    // const pdfDownloadUrl =
+    //   member.attributes.TeamMemberPdfLink?.data?.[0]?.attributes?.url
+    //     ? `https://typescript-blog-backend.onrender.com${member.attributes.TeamMemberPdfLink.data[0].attributes.url}`
+    //     : undefined;
+
+    // const docxDownloadUrl =
+    //   member.attributes.TeamMemberDocxLink?.data?.[0]?.attributes?.url
+    //     ? `https://typescript-blog-backend.onrender.com${member.attributes.TeamMemberDocxLink.data[0].attributes.url}`
+    //     : undefined;
 
     const pdfDownloadUrl =
       member.attributes.TeamMemberPdfLink?.data?.[0]?.attributes?.url
-        ? `https://typescript-blog-backend.onrender.com${member.attributes.TeamMemberPdfLink.data[0].attributes.url}`
+        ? getSafeUrl(member.attributes.TeamMemberPdfLink.data[0].attributes.url)
         : undefined;
 
     const docxDownloadUrl =
       member.attributes.TeamMemberDocxLink?.data?.[0]?.attributes?.url
-        ? `https://typescript-blog-backend.onrender.com${member.attributes.TeamMemberDocxLink.data[0].attributes.url}`
+        ? getSafeUrl(member.attributes.TeamMemberDocxLink.data[0].attributes.url)
         : undefined;
 
     return (

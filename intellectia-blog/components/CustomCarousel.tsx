@@ -28,7 +28,16 @@ export type CustomCarouselProps = {
 };
 
 const CustomCarousel: NextPage<CustomCarouselProps> = ({ id }) => {
-  const imageURL = "https://typescript-blog-backend.onrender.com" + id.attributes.url;
+  // const imageURL = "https://typescript-blog-backend.onrender.com" + id.attributes.url;
+
+  const rawUrl = id.attributes?.url;
+
+    const imageURL = rawUrl?.startsWith("http")
+      ? rawUrl
+      : rawUrl
+      ? `${process.env.NEXT_PUBLIC_STRAPI_URL}${rawUrl}`
+      : "/placeholder.jpg";
+
 
   return (
     // <div>

@@ -52,10 +52,19 @@ const TeamList: FC<TeamListProps> = ({ teamMembers = [] }) => {
     <>
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-3 md:gap-6 p-1 md:p-6">
         {currentMembers.map((member) => {
-          const imageUrl =
-            member.attributes.TeamMemberPhoto?.data?.attributes?.url
-              ? "https://typescript-blog-backend.onrender.com" + member.attributes.TeamMemberPhoto.data.attributes.url
-              : "/placeholder.jpg"; // fallback
+          // const imageUrl =
+          //   member.attributes.TeamMemberPhoto?.data?.attributes?.url
+          //     ? "https://typescript-blog-backend.onrender.com" + member.attributes.TeamMemberPhoto.data.attributes.url
+          //     : "/placeholder.jpg"; // fallback
+
+          const rawUrl = member.attributes.TeamMemberPhoto?.data?.attributes?.url;
+
+            const imageUrl = rawUrl?.startsWith("http")
+              ? rawUrl
+              : rawUrl
+              ? `${process.env.NEXT_PUBLIC_STRAPI_URL}${rawUrl}`
+              : "/placeholder.jpg";
+
 
           return (
             <Link

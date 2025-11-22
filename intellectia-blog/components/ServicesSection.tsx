@@ -54,10 +54,19 @@ const ServicesSection = () => {
         <div className="divide-y divide-gray-200 border-t">
           {services.map((service, index) => {
             const { serviceTitle, serviceDesc, serviceImg, practice_area } = service.attributes;
-            const imageUrl =
-              serviceImg?.data?.[0]?.attributes?.url
-                ? `${process.env.NEXT_PUBLIC_STRAPI_URL}${serviceImg.data[0].attributes.url}`
-                : '/images/placeholder.jpg';
+            // const imageUrl =
+            //   serviceImg?.data?.[0]?.attributes?.url
+            //     ? `${process.env.NEXT_PUBLIC_STRAPI_URL}${serviceImg.data[0].attributes.url}`
+            //     : '/images/placeholder.jpg';
+
+            const rawUrl = serviceImg?.data?.[0]?.attributes?.url;
+
+            const imageUrl = rawUrl?.startsWith("http")
+              ? rawUrl
+              : rawUrl
+              ? `${process.env.NEXT_PUBLIC_STRAPI_URL}${rawUrl}`
+              : "/images/placeholder.jpg";
+
 
             const slug = practice_area?.data?.attributes?.slug;
 

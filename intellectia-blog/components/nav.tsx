@@ -31,6 +31,8 @@ const Nav: NextPage<NavType> = ({ className = "", logoURL }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isClient, setIsClient] = useState(false);
 
+  const imageUrl = logoURL || "/default-logo.png";
+
   // Ensure Framer Motion only runs on client to prevent hydration issues
   useEffect(() => {
     setIsClient(true);
@@ -48,7 +50,7 @@ const Nav: NextPage<NavType> = ({ className = "", logoURL }) => {
           <Link href="/" className="cursor-pointer">
             {/* <img src={logoURL} className="logo-image" alt="Logo" /> */}
             <Image
-              src={logoURL || "/default-logo.png"} 
+              src={imageUrl || "/default-logo.png"} 
               alt="Logo"
               width={160}           
               height={60}           
