@@ -14,29 +14,66 @@ async function getStrapiData(url: string) {
 
 const Sectors: NextPage = async () => {
   const homeData = await getStrapiData("/api/home-page?populate=*");
-  const logoURL =
-    "https://typescript-blog-backend.onrender.com" + homeData.data.attributes.Logo.data.attributes.url;
+  // const logoURL =
+  //   "https://typescript-blog-backend.onrender.com" + homeData.data.attributes.Logo.data.attributes.url;
+
+  const rawLogo = homeData.data.attributes.Logo?.data?.attributes?.url;
+  const logoURL = rawLogo
+    ? rawLogo.startsWith("http")
+      ? rawLogo
+      : "https://typescript-blog-backend.onrender.com" + rawLogo
+    : "/logo.png";
+
 
   const sectorData = await getStrapiData("/api/sectors?populate=SectorImg");
+  // const sectors =
+  //   // sectorData?.data?.map((item: any) => ({
+  //     sectorData?.data
+  //     ?.sort((a: any, b: any) => a.id - b.id)   // <-- SORT BY ID ASC
+  //     .map((item: any) => ({
+  //     tag: item.attributes.SectorTag,
+  //     title: item.attributes.SectorTitle,
+  //     slug: item.attributes.sectorslug,
+  //     image: item.attributes.SectorImg?.data?.attributes?.url
+  //       ? "https://typescript-blog-backend.onrender.com" +
+  //         item.attributes.SectorImg.data.attributes.url
+  //       : "/images/default.jpg",
+  //   })) || [];
+
   const sectors =
-    // sectorData?.data?.map((item: any) => ({
-      sectorData?.data
-      ?.sort((a: any, b: any) => a.id - b.id)   // <-- SORT BY ID ASC
-      .map((item: any) => ({
-      tag: item.attributes.SectorTag,
-      title: item.attributes.SectorTitle,
-      slug: item.attributes.sectorslug,
-      image: item.attributes.SectorImg?.data?.attributes?.url
-        ? "https://typescript-blog-backend.onrender.com" +
-          item.attributes.SectorImg.data.attributes.url
-        : "/images/default.jpg",
-    })) || [];
+  sectorData?.data
+    ?.sort((a: any, b: any) => a.id - b.id)
+    .map((item: any) => {
+      const rawUrl = item.attributes.SectorImg?.data?.attributes?.url;
+
+      return {
+        tag: item.attributes.SectorTag,
+        title: item.attributes.SectorTitle,
+        slug: item.attributes.sectorslug,
+        image: rawUrl
+          ? rawUrl.startsWith("http")
+            ? rawUrl
+            : "https://typescript-blog-backend.onrender.com" + rawUrl
+          : "/images/default.jpg"
+      };
+    }) || [];
+
 
   const videoData = await getStrapiData("/api/sectors-video?populate=SecVideos");
+  // const videos =
+  //   videoData?.data?.attributes?.SecVideos?.data?.map(
+  //     (vid: any) => "https://typescript-blog-backend.onrender.com" + vid.attributes.url
+  //   ) || [];
+
   const videos =
-    videoData?.data?.attributes?.SecVideos?.data?.map(
-      (vid: any) => "https://typescript-blog-backend.onrender.com" + vid.attributes.url
-    ) || [];
+  videoData?.data?.attributes?.SecVideos?.data?.map((vid: any) => {
+    const rawUrl = vid.attributes.url;
+
+    return rawUrl.startsWith("http")
+      ? rawUrl
+      : "https://typescript-blog-backend.onrender.com" + rawUrl;
+  }) || [];
+
 
   return (
     <>

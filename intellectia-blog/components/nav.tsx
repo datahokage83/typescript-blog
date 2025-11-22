@@ -55,7 +55,8 @@ const Nav: NextPage<NavType> = ({ className = "", logoURL }) => {
               width={160}           
               height={60}           
               className="logo-image w-auto h-auto"
-              priority              
+              priority  
+              unoptimized            
             />
 
           </Link>

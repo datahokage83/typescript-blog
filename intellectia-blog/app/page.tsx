@@ -70,6 +70,7 @@ const Home: NextPage = async () => {
   const logoURL = Logo?.data?.attributes?.url
     ? baseURL + Logo.data.attributes.url
     : "";
+    console.log("🔥 LOGO URL:", logoURL);
 
   return (
     <>

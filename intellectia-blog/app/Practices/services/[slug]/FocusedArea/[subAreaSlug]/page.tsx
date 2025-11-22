@@ -122,11 +122,21 @@ const FocusedAreaPage = () => {
   if (!SubArea) return <p className="text-center py-20">Loading...</p>;
 
   const imgData = SubArea.attributes.SubAreaImg?.data;
-  const imageUrl = imgData
-    ? Array.isArray(imgData)
-      ? `https://typescript-blog-backend.onrender.com${imgData[0].attributes.url}`
-      : `https://typescript-blog-backend.onrender.com${imgData.attributes.url}`
-    : 'https://via.placeholder.com/800x600?text=No+Image';
+  // const imageUrl = imgData
+  //   ? Array.isArray(imgData)
+  //     ? `https://typescript-blog-backend.onrender.com${imgData[0].attributes.url}`
+  //     : `https://typescript-blog-backend.onrender.com${imgData.attributes.url}`
+  //   : 'https://via.placeholder.com/800x600?text=No+Image';
+        const rawUrl = Array.isArray(imgData)
+        ? imgData[0]?.attributes?.url
+        : imgData?.attributes?.url;
+
+      const imageUrl = rawUrl
+        ? rawUrl.startsWith("http")
+          ? rawUrl
+          : "https://typescript-blog-backend.onrender.com" + rawUrl
+        : "/placeholder.jpg";
+
 
   return (
     <>
@@ -225,9 +235,18 @@ const FocusedAreaPage = () => {
                     <>
                       <div className="grid grid-cols-1 gap-10 px-0">
                         {keyContacts.slice(0, 4).map((contact: any) => {
-                          const photoUrl = contact.attributes.TeamMemberPhoto?.data?.attributes?.url
-                            ? `https://typescript-blog-backend.onrender.com${contact.attributes.TeamMemberPhoto.data.attributes.url}`
-                            : "/placeholder.jpg";
+                          // const photoUrl = contact.attributes.TeamMemberPhoto?.data?.attributes?.url
+                          //   ? `https://typescript-blog-backend.onrender.com${contact.attributes.TeamMemberPhoto.data.attributes.url}`
+                          //   : "/placeholder.jpg";
+
+                          const rawPhoto = contact.attributes.TeamMemberPhoto?.data?.attributes?.url;
+
+                            const photoUrl = rawPhoto
+                              ? rawPhoto.startsWith("http")
+                                ? rawPhoto
+                                : "https://typescript-blog-backend.onrender.com" + rawPhoto
+                              : "/placeholder.jpg";
+
 
                           return (
                             <div
@@ -302,10 +321,19 @@ const FocusedAreaPage = () => {
 
             <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3">
               {Segments.map((segment: any) => {
-                const imgData = segment.attributes.SegmentImage;
-                const imageUrl = imgData?.data?.length
-                  ? `https://typescript-blog-backend.onrender.com${imgData.data[0].attributes.url}`
-                  : 'https://via.placeholder.com/400x250?text=No+Image';
+                // const imgData = segment.attributes.SegmentImage;
+                // const imageUrl = imgData?.data?.length
+                //   ? `https://typescript-blog-backend.onrender.com${imgData.data[0].attributes.url}`
+                //   : 'https://via.placeholder.com/400x250?text=No+Image';
+                const rawSeg =
+                    segment.attributes.SegmentImage?.data?.[0]?.attributes?.url;
+
+                  const segmentImageUrl = rawSeg
+                    ? rawSeg.startsWith("http")
+                      ? rawSeg
+                      : "https://typescript-blog-backend.onrender.com" + rawSeg
+                    : "/placeholder.jpg";
+
 
                 return (
                   <Link
@@ -314,7 +342,7 @@ const FocusedAreaPage = () => {
                   >
                     <div className="group relative h-36 md:h-52 w-36 md:w-52 cursor-pointer overflow-hidden transition-shadow duration-300 ">
                       <img
-                        src={imageUrl}
+                        src={segmentImageUrl}
                         alt={segment.attributes.SegmentName}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                         loading="lazy"
@@ -333,7 +361,7 @@ const FocusedAreaPage = () => {
         </section>
       )}
 
-      <section>
+      {/* <section>
         {keyContacts.length > 0 && (
           <section className="py-12 bg-gray-200 block md:hidden mt-12">
             <div className="max-w-6xl mx-auto px-6">
@@ -343,7 +371,15 @@ const FocusedAreaPage = () => {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 {keyContacts.map((contact) => (
                   <div key={contact.id} className="flex flex-col items-center  p-4 ">
-                    {contact.attributes.TeamMemberPhoto?.data?.attributes?.url && (
+                    {(
+                       const rawPhoto = contact.attributes.TeamMemberPhoto?.data?.attributes?.url;
+
+                        const photoUrl = rawPhoto
+                          ? rawPhoto.startsWith("http")
+                            ? rawPhoto
+                            : "https://typescript-blog-backend.onrender.com" + rawPhoto
+                          : "/placeholder.jpg";
+
                       <img
                         src={`https://typescript-blog-backend.onrender.com${contact.attributes.TeamMemberPhoto.data.attributes.url}`}
                         alt={contact.attributes.TeamMemberName}
@@ -366,7 +402,60 @@ const FocusedAreaPage = () => {
             </div>
           </section>
         )}
-      </section>
+      </section> */}
+
+      <section>
+            {keyContacts.length > 0 && (
+              <section className="py-12 bg-gray-200 block md:hidden mt-12">
+                <div className="max-w-6xl mx-auto px-6">
+                  <h2 className="text-xl md:text-5xl font-semibold mb-8 text-center text-gray-800 font-opensans">
+                    Key Contacts
+                  </h2>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    {keyContacts.map((contact) => {
+                      const rawPhoto =
+                        contact.attributes.TeamMemberPhoto?.data?.attributes?.url;
+
+                      const photoUrl = rawPhoto
+                        ? rawPhoto.startsWith("http")
+                          ? rawPhoto
+                          : "https://typescript-blog-backend.onrender.com" + rawPhoto
+                        : "/placeholder.jpg";
+
+                      return (
+                        <div key={contact.id} className="flex flex-col items-center p-4">
+                          <img
+                            src={photoUrl}
+                            alt={contact.attributes.TeamMemberName}
+                            className="w-24 h-24 object-cover rounded-full mb-3"
+                          />
+
+                          <h3 className="text-lg text-lime-400 font-semibold">
+                            {contact.attributes.TeamMemberName}
+                          </h3>
+
+                          <p className="text-gray-600 text-sm mt-1">
+                            {contact.attributes.TeamMemberDesignation}
+                          </p>
+
+                          {contact.attributes.TeamMemberEmail && (
+                            <a
+                              href={`mailto:${contact.attributes.TeamMemberEmail}`}
+                              className="text-gray-600 text-sm mt-1"
+                            >
+                              {contact.attributes.TeamMemberEmail}
+                            </a>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              </section>
+            )}
+          </section>
+
 
       <Footer />
     </>

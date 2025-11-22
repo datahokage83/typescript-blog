@@ -55,10 +55,18 @@ const SegmentPage = () => {
         const imgRes = await fetch("https://typescript-blog-backend.onrender.com/api/segment-image?populate=*");
         const imgData = await imgRes.json();
 
-        const images =
-          imgData.data?.attributes?.SegCTAImg?.data?.map((img: any) =>
-            "https://typescript-blog-backend.onrender.com" + img.attributes.url
-          ) || [];
+        const images = imgData.data?.attributes?.SegCTAImg?.data?.map((img: any) => {
+              const raw = img.attributes.url;
+
+              return raw.startsWith("http")
+                ? raw
+                : "https://typescript-blog-backend.onrender.com" + raw;
+            });
+
+
+          // imgData.data?.attributes?.SegCTAImg?.data?.map((img: any) =>
+          //   "https://typescript-blog-backend.onrender.com" + img.attributes.url
+          // ) || [];
 
         if (images.length > 0) {
           const randomImg = images[Math.floor(Math.random() * images.length)];
@@ -97,11 +105,26 @@ const SegmentPage = () => {
   // SEGMENT MAIN IMAGE HANDLING
   // -------------------------------------
   const imgData = segment.attributes.SegmentImage?.data;
-  const imageUrl = imgData
-    ? Array.isArray(imgData)
-      ? `https://typescript-blog-backend.onrender.com${imgData[0]?.attributes?.url}`
-      : `https://typescript-blog-backend.onrender.com${imgData.attributes.url}`
-    : "https://via.placeholder.com/400x250?text=No+Image";
+  // const imageUrl = imgData
+  //   ? Array.isArray(imgData)
+  //     ? `https://typescript-blog-backend.onrender.com${imgData[0]?.attributes?.url}`
+  //     : `https://typescript-blog-backend.onrender.com${imgData.attributes.url}`
+  //   : "https://via.placeholder.com/400x250?text=No+Image";
+
+         let imageUrl = "/placeholder.jpg";
+
+          if (imgData) {
+            const raw = Array.isArray(imgData)
+              ? imgData[0]?.attributes?.url
+              : imgData.attributes.url;
+
+            imageUrl = raw
+              ? raw.startsWith("http")
+                ? raw
+                : "https://typescript-blog-backend.onrender.com" + raw
+              : "/placeholder.jpg";
+          }
+
 
   return (
     <>

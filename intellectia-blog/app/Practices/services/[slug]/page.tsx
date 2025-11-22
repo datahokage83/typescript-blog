@@ -14,6 +14,14 @@ async function getStrapiData(url: string) {
   return await res.json();
 }
 
+function buildURL(rawUrl?: string) {
+  if (!rawUrl) return "/placeholder.jpg";
+  return rawUrl.startsWith("http")
+    ? rawUrl
+    : "https://typescript-blog-backend.onrender.com" + rawUrl;
+}
+
+
 const PracticeDetailPage = () => {
   const { slug } = useParams();
   const practiceSlug = Array.isArray(slug) ? slug[0] : slug;
@@ -66,9 +74,14 @@ const PracticeDetailPage = () => {
   if (notFound) return <p className="text-center py-20">Practice not found</p>;
   if (!practice) return <p className="text-center py-20">Loading...</p>;
 
-   const practiceImage = practice.attributes.PracticeAreaImage?.data?.attributes?.url
-    ? `https://typescript-blog-backend.onrender.com${practice.attributes.PracticeAreaImage.data.attributes.url}`
-    : "/placeholder.jpg";
+  //  const practiceImage = practice.attributes.PracticeAreaImage?.data?.attributes?.url
+  //   ? `https://typescript-blog-backend.onrender.com${practice.attributes.PracticeAreaImage.data.attributes.url}`
+  //   : "/placeholder.jpg";
+
+   const practiceImage = buildURL(
+      practice.attributes.PracticeAreaImage?.data?.attributes?.url
+    );
+
 
     const quote = practice.attributes.quote;
 
@@ -156,9 +169,13 @@ const PracticeDetailPage = () => {
                 <>
                   <div className="grid grid-cols-1 gap-10 px-0">
                     {teamMembers.slice(0, 4).map((member: any) => {
-                      const photoUrl = member.attributes.TeamMemberPhoto?.data?.attributes?.url
-                        ? `https://typescript-blog-backend.onrender.com${member.attributes.TeamMemberPhoto.data.attributes.url}`
-                        : "/placeholder.jpg";
+                      // const photoUrl = member.attributes.TeamMemberPhoto?.data?.attributes?.url
+                      //   ? `https://typescript-blog-backend.onrender.com${member.attributes.TeamMemberPhoto.data.attributes.url}`
+                      //   : "/placeholder.jpg";
+                      const photoUrl = buildURL(
+                            member.attributes.TeamMemberPhoto?.data?.attributes?.url
+                          );
+
                       return (
                         <div
                           key={member.id}
@@ -229,9 +246,12 @@ const PracticeDetailPage = () => {
                       <>
                         <div className="grid grid-cols-2 sm:grid-cols-2 gap-10">
                           {teamMembers.slice(0, 4).map((member: any) => {
-                            const photoUrl = member.attributes.TeamMemberPhoto?.data?.attributes?.url
-                              ? `https://typescript-blog-backend.onrender.com${member.attributes.TeamMemberPhoto.data.attributes.url}`
-                              : "/placeholder.jpg";
+                            // const photoUrl = member.attributes.TeamMemberPhoto?.data?.attributes?.url
+                            //   ? `https://typescript-blog-backend.onrender.com${member.attributes.TeamMemberPhoto.data.attributes.url}`
+                            //   : "/placeholder.jpg";
+                             const photoUrl = buildURL(
+                            member.attributes.TeamMemberPhoto?.data?.attributes?.url
+                          );
                             return (
                               <div
                                 key={member.id}
@@ -310,13 +330,20 @@ const PracticeDetailPage = () => {
     </h2>
     <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-4">
       {subAreas.map((sub) => {
-        const imgData = sub.attributes.SubAreaImg;
-        const imageUrl =
-          imgData?.data
-            ? Array.isArray(imgData.data)
-              ? `https://typescript-blog-backend.onrender.com${imgData.data[0]?.attributes?.url}`
-              : `https://typescript-blog-backend.onrender.com${imgData.data?.attributes?.url}`
-            : "https://via.placeholder.com/400x250?text=No+Image";
+         const imgData = sub.attributes.SubAreaImg;
+        // const imageUrl =
+        //   imgData?.data
+        //     ? Array.isArray(imgData.data)
+        //       ? `https://typescript-blog-backend.onrender.com${imgData.data[0]?.attributes?.url}`
+        //       : `https://typescript-blog-backend.onrender.com${imgData.data?.attributes?.url}`
+        //     : "https://via.placeholder.com/400x250?text=No+Image";
+
+        const rawImg = Array.isArray(imgData?.data)
+            ? imgData.data[0]?.attributes?.url
+            : imgData?.data?.attributes?.url;
+
+          const imageUrl = buildURL(rawImg);
+
 
         return (
           <Link

@@ -85,25 +85,25 @@ export default async function TeamMemberPage({ params }: PageProps) {
       const imageUrl = getSafeUrl(photoRaw);
 
 
-    // const pdfDownloadUrl =
-    //   member.attributes.TeamMemberPdfLink?.data?.[0]?.attributes?.url
-    //     ? `https://typescript-blog-backend.onrender.com${member.attributes.TeamMemberPdfLink.data[0].attributes.url}`
-    //     : undefined;
-
-    // const docxDownloadUrl =
-    //   member.attributes.TeamMemberDocxLink?.data?.[0]?.attributes?.url
-    //     ? `https://typescript-blog-backend.onrender.com${member.attributes.TeamMemberDocxLink.data[0].attributes.url}`
-    //     : undefined;
-
     const pdfDownloadUrl =
       member.attributes.TeamMemberPdfLink?.data?.[0]?.attributes?.url
-        ? getSafeUrl(member.attributes.TeamMemberPdfLink.data[0].attributes.url)
+        ? `https://typescript-blog-backend.onrender.com${member.attributes.TeamMemberPdfLink.data[0].attributes.url}`
         : undefined;
 
     const docxDownloadUrl =
       member.attributes.TeamMemberDocxLink?.data?.[0]?.attributes?.url
-        ? getSafeUrl(member.attributes.TeamMemberDocxLink.data[0].attributes.url)
+        ? `https://typescript-blog-backend.onrender.com${member.attributes.TeamMemberDocxLink.data[0].attributes.url}`
         : undefined;
+
+    // const pdfDownloadUrl =
+    //   member.attributes.TeamMemberPdfLink?.data?.[0]?.attributes?.url
+    //     ? getSafeUrl(member.attributes.TeamMemberPdfLink.data[0].attributes.url)
+    //     : undefined;
+
+    // const docxDownloadUrl =
+    //   member.attributes.TeamMemberDocxLink?.data?.[0]?.attributes?.url
+    //     ? getSafeUrl(member.attributes.TeamMemberDocxLink.data[0].attributes.url)
+    //     : undefined;
 
     return (
       <>

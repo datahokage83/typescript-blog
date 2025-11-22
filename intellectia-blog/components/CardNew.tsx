@@ -1,81 +1,3 @@
-// 'use client'
-// import { motion } from 'framer-motion';
-// import React from 'react';
-// import { useRouter } from 'next/navigation';
-
-
-// const CardNew = ({ BlogPosts }: any ) => {
-//   const router = useRouter();
-// const imageUrl = "https://typescript-blog-backend.onrender.com" + BlogPosts.attributes.cover.data.attributes.url;
-// const title = BlogPosts.attributes.title;
-// const desc = BlogPosts.attributes.ShortDesc;
-//   return (
-    
-//     <div className="card-containerLandingPage">
-//       <div className="cardLandingPage">
-
-//         <img
-//           src={imageUrl}
-//           alt="Card Image"
-//           className="card-imageLandingPage"
-//         />
-//         <div className="card-contentLandingPage">
-//           <div className="h-64">
-//           <h2 className="card-titleLandingPage">{title}</h2>
-//           <p className="card-descriptionLandingPage font-dm-sans line-clamp-6">
-//             {desc}
-//           </p>
-//           </div>
-//           <button className="card-buttonLandingPage" onClick={() => router.push(`/Blogs/${BlogPosts.id}`)}>Read More</button>
-//         </div>
-//       </div>
-
-     
-//     </div>
-   
-//   );
-// };
-
-// export default CardNew;
-
-// 'use client'
-// import React from 'react';
-// import { FiArrowUpRight } from 'react-icons/fi';
-// import { motion } from 'framer-motion';
-// import Link from 'next/link';
-
-// const CardNew = ({ BlogPosts }: any) => {
-//   const imageUrl = "https://typescript-blog-backend.onrender.com" + BlogPosts.attributes.PracticeAreaImage.data.attributes.url;
-//   const title = BlogPosts.attributes.title;
-//   const slug = BlogPosts.attributes.slug;
-
-//   return (
-//     <Link href={`/Practices/${slug}`}>
-//     <div className="relative w-42 md:w-64 h-36 md:h-64 overflow-hidden group cursor-pointer">
-//       {/* Image */}
-//       <img
-//         src={imageUrl}
-//         alt={title}
-//         className="w-full h-full object-cover"
-//         loading="lazy"
-//       />
-
-//       {/* Overlay */}
-//       <motion.div
-//         className="absolute inset-0 bg-gray-800  flex justify-between items-start p-4 -translate-x-full group-hover:translate-x-0 transition-transform duration-300"
-//       >
-//         {/* Title */}
-//         <h2 className= "absolute bottom-2 left-3 text-white font-dm-sans font-bold text-xl">{title}</h2>
-
-//         {/* North-east arrow */}
-//         <FiArrowUpRight className="absolute text-white w-6 h-6 right-2 " />
-//       </motion.div>
-//     </div>
-//     </Link>
-//   );
-// };
-
-// export default CardNew;
 
 'use client'
 import React from 'react';
@@ -86,10 +8,18 @@ import Image from "next/image";
 
 
 const CardNew = ({ BlogPosts }: any) => {
-  const imageUrl =
-    BlogPosts.attributes.PracticeAreaImage?.data?.attributes?.url
-      ? "https://typescript-blog-backend.onrender.com" + BlogPosts.attributes.PracticeAreaImage.data.attributes.url
-      : "/placeholder.jpg"; // fallback image
+  // const imageUrl =
+  //   BlogPosts.attributes.PracticeAreaImage?.data?.attributes?.url
+  //     ? "https://typescript-blog-backend.onrender.com" + BlogPosts.attributes.PracticeAreaImage.data.attributes.url
+  //     : "/placeholder.jpg"; // fallback image
+  const rawUrl = BlogPosts?.attributes?.PracticeAreaImage?.data?.attributes?.url;
+
+    const imageUrl = rawUrl
+      ? rawUrl.startsWith("http")
+        ? rawUrl
+        : "https://typescript-blog-backend.onrender.com" + rawUrl
+      : "/placeholder.jpg";
+
   const title = BlogPosts.attributes.title || "No Title";
   const slug = BlogPosts.attributes.slug || "#";
 

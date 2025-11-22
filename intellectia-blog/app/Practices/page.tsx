@@ -36,7 +36,9 @@ const Practice = () => {
         ]);
 
         setPracticeAreas(practiceData?.data || []);
-        setLogoURL(baseURL + homeData.data.attributes.Logo.data.attributes.url);
+        // setLogoURL(baseURL + homeData.data.attributes.Logo.data.attributes.url);
+            const cloudinaryLogo = homeData?.data?.attributes?.Logo?.data?.attributes?.url;
+            setLogoURL(cloudinaryLogo || "");
       } catch (error) {
         console.error("Error fetching practice data:", error);
       } finally {

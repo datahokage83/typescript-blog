@@ -15,6 +15,14 @@ async function getStrapiData(url: string) {
   return data;
 }
 
+function buildURL(url?: string) {
+  if (!url) return "/placeholder.jpg";
+  return url.startsWith("http")
+    ? url
+    : "https://typescript-blog-backend.onrender.com" + url;
+}
+
+
 const PracticeDetailPage = () => {
   const { slug } = useParams();
   const practiceSlug = Array.isArray(slug) ? slug[0] : slug;
@@ -79,9 +87,14 @@ const PracticeDetailPage = () => {
 
   if (!practice) return <p className="text-center py-20">Loading...</p>;
 
-  const practiceImage = practice.attributes.PracticeAreaImage?.data?.attributes?.url
-    ? `https://typescript-blog-backend.onrender.com${practice.attributes.PracticeAreaImage.data.attributes.url}`
-    : "/placeholder.jpg";
+  // const practiceImage = practice.attributes.PracticeAreaImage?.data?.attributes?.url
+  //   ? `https://typescript-blog-backend.onrender.com${practice.attributes.PracticeAreaImage.data.attributes.url}`
+  //   : "/placeholder.jpg";
+
+  const practiceImage = buildURL(
+  practice.attributes.PracticeAreaImage?.data?.attributes?.url
+);
+
 
   const quote = practice.attributes.quote;
 
@@ -111,6 +124,7 @@ const PracticeDetailPage = () => {
             fill
             className="object-cover"
             priority
+            unoptimized
           />
         </div> */}
 
@@ -133,9 +147,13 @@ const PracticeDetailPage = () => {
             {/* <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"> */}
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
               {subAreas.map((sub: any) => {
-                const imageUrl = sub?.attributes?.SubAreaImg?.data?.[0]?.attributes?.url
-                  ? `https://typescript-blog-backend.onrender.com${sub.attributes.SubAreaImg.data[0].attributes.url}`
-                  : "/placeholder.jpg";
+                // const imageUrl = sub?.attributes?.SubAreaImg?.data?.[0]?.attributes?.url
+                //   ? `https://typescript-blog-backend.onrender.com${sub.attributes.SubAreaImg.data[0].attributes.url}`
+                //   : "/placeholder.jpg";
+                const imageUrl = buildURL(
+                    sub?.attributes?.SubAreaImg?.data?.[0]?.attributes?.url
+                  );
+
 
                 return (
                   <Link
@@ -150,6 +168,7 @@ const PracticeDetailPage = () => {
                           fill
                           className="object-cover"
                           loading="lazy"
+                          unoptimized
                         />
                       </div>
                       <p className="mt-2 font-medium">{sub.attributes.SubAreaName}</p>

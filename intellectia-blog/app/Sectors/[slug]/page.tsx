@@ -28,9 +28,18 @@ export default async function SectorPage({ params }: { params: { slug: string } 
     return <div className="text-center text-gray-500 py-20">Sector not found.</div>;
   }
 
-  const imageUrl = sector?.SectorImg?.data
-    ? "https://typescript-blog-backend.onrender.com" + sector.SectorImg.data.attributes.url
-    : "/images/default.jpg";
+  // const imageUrl = sector?.SectorImg?.data
+  //   ? "https://typescript-blog-backend.onrender.com" + sector.SectorImg.data.attributes.url
+  //   : "/images/default.jpg";
+
+    const rawUrl = sector?.SectorImg?.data?.attributes?.url;
+
+    const imageUrl = rawUrl
+      ? rawUrl.startsWith("http")
+        ? rawUrl
+        : "https://typescript-blog-backend.onrender.com" + rawUrl
+      : "/images/default.jpg";
+
 
   // Fetch all sectors (future-safe)
   const allSectorsRes = await getStrapiData("/api/sectors?populate=*");
