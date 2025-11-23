@@ -139,7 +139,7 @@ const AboutUs = () => {
             {/* <pre className="mt-4 text-sm sm:text-base text-gray-600 dark:text-gray-400 text-justify whitespace-pre-wrap">
               {desc}
             </pre> */}
-            <p className="mt-4 text-sm sm:text-base text-gray-600 dark:text-gray-400 text-justify whitespace-pre-wrap">              
+            <p className="mt-4 text-sm sm:text-base font-mono text-gray-600 dark:text-gray-400 text-justify whitespace-pre-wrap">              
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore 
               et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut 
               aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
@@ -147,7 +147,7 @@ const AboutUs = () => {
               officia deserunt mollit anim id est laborum.
             </p>
 
-            <p className="mt-4 text-sm sm:text-base text-gray-600 dark:text-gray-400 text-justify whitespace-pre-wrap">
+            <p className="mt-4 text-sm sm:text-base font-mono text-gray-600 dark:text-gray-400 text-justify whitespace-pre-wrap">
               Hac venenatis vitae fermentum pellentesque euismod 
               imperdiet auctor rutrum. Himenaeos nascetur non semper donec mauris vitae congue. Curabitur conubia 
               eleifend quisque finibus purus efficitur pretium per. Sociosqu class turpis facilisis neque ligula 

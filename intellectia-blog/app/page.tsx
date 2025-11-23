@@ -83,7 +83,8 @@ const Home: NextPage = async () => {
   return (
     <>
       <DisclaimerModal disclaimer={Disclaimer} />
-      <Nav logoURL={logoURL} />
+      {/* <Nav logoURL={logoURL} /> */}
+        <Nav/>
 
       <PracticeCarousel
         HomePageCarousel={HomePageCarousel?.data || []}
