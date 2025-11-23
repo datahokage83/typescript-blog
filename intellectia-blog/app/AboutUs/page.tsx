@@ -113,7 +113,7 @@ const AboutUs = () => {
 
   return (
     <>
-      <Nav logoURL={logoURL} />
+      <Nav />
 
       <div className="dark:bg-gray-800 flex flex-col lg:flex-row py-8 sm:py-10 lg:py-16 px-4 sm:px-6 lg:px-8 xl:px-20 mdAboutUsBack">
         <div className="flex items-center justify-center w-full lg:w-1/2 h-64 sm:h-80 lg:h-96 mb-6 lg:mb-0 lg:pr-8">
@@ -136,9 +136,25 @@ const AboutUs = () => {
             <h2 className="text-2xl sm:text-3xl lg:text-xl text-white font-dm-sans font-medium text-center lg:text-left">
               Who We <span className="text-indigo-400 font-dm-sans">Are</span>
             </h2>
-            <pre className="mt-4 text-sm sm:text-base text-gray-600 dark:text-gray-400 text-justify whitespace-pre-wrap">
+            {/* <pre className="mt-4 text-sm sm:text-base text-gray-600 dark:text-gray-400 text-justify whitespace-pre-wrap">
               {desc}
-            </pre>
+            </pre> */}
+            <p className="mt-4 text-sm sm:text-base text-gray-600 dark:text-gray-400 text-justify whitespace-pre-wrap">              
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore 
+              et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut 
+              aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+              dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui 
+              officia deserunt mollit anim id est laborum.
+            </p>
+
+            <p className="mt-4 text-sm sm:text-base text-gray-600 dark:text-gray-400 text-justify whitespace-pre-wrap">
+              Hac venenatis vitae fermentum pellentesque euismod 
+              imperdiet auctor rutrum. Himenaeos nascetur non semper donec mauris vitae congue. Curabitur conubia 
+              eleifend quisque finibus purus efficitur pretium per. Sociosqu class turpis facilisis neque ligula 
+              ipsum. Ipsum tempor nullam malesuada dignissim est platea ipsum! Natoque tortor magnis facilisi tempus
+              purus sollicitudin accumsan scelerisque. Faucibus pellentesque semper vehicula diam nisi, orci magna 
+              mollis. Taciti porta dui ultricies taciti at primis lectus.
+            </p>
 
             <div className="mt-6 text-center lg:text-left">
               <Link href="/ContactUs" legacyBehavior passHref>

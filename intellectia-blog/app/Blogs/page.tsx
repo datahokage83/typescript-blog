@@ -35,7 +35,7 @@ export default async function Blogs() {
 
   return (
     <>
-      <Nav logoURL={logoURL} />
+      <Nav />
 
       {/* HERO SECTION */}
       <div className="bg-gray-800 py-8 sm:py-12 lg:py-16">

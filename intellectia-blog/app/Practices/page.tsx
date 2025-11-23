@@ -64,7 +64,8 @@ const Practice = () => {
 
   return (
     <>
-      {logoURL && <Nav logoURL={logoURL} />}
+      {/* {logoURL && <Nav logoURL={logoURL} />} */}
+      <Nav/>
 
 
       <section className="bg-gray-200 py-16 md:py-20">

@@ -107,7 +107,8 @@ export default async function TeamMemberPage({ params }: PageProps) {
 
     return (
       <>
-        <Nav logoURL={logoURL} />
+        {/* <Nav logoURL={logoURL} /> */}
+         <Nav />
 
         {/* Hero Section */}
         <div className="bg-gray-800 relative w-full min-h-[65vh] md:min-h-[85vh] flex justify-center items-center">

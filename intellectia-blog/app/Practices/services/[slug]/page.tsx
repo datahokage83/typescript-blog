@@ -111,7 +111,8 @@ const PracticeDetailPage = () => {
 
   return (
     <>
-      {logoURL && <Nav logoURL={logoURL} />}
+      {/* {logoURL && <Nav logoURL={logoURL} />} */}
+       <Nav/>
 
       {/* Practice Header */}
       {/* Practice Header Section */}

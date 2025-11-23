@@ -108,7 +108,7 @@ export default function CareersHero() {
     <div>
 
        <section>
-        <Nav logoURL={logoURL} />
+        <Nav/>
        </section>
       
       <section ref={firstSectionRef} className="bg-gray-800 relative w-full h-[76vh] md:h-[70vh] lg:h-[75vh]">

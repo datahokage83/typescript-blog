@@ -36,7 +36,7 @@ const Page = async ({ params }: any) => {
 
   return (
     <>
-      <Nav logoURL={logoURL} />
+      <Nav />
       <br></br>
       <BlogContent strapiData={strapiData} blog={blog}/>
       <Footer/>

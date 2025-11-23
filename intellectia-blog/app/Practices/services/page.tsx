@@ -100,7 +100,8 @@ const PracticeDetailPage = () => {
 
   return (
     <>
-      {logoURL && <Nav logoURL={logoURL} />}
+     {/* {logoURL && <Nav logoURL={logoURL} />} */}
+      <Nav/> 
 
       {/* Practice Info */}
       <section className="max-w-5xl mx-auto p-6 font-dm-sans">

@@ -77,7 +77,8 @@ const Sectors: NextPage = async () => {
 
   return (
     <>
-      <Nav logoURL={logoURL} />
+      {/* <Nav logoURL={logoURL} /> */}
+        <Nav/>
 
       {/* Hero Section */}
       <section className="relative flex flex-col md:flex-row items-stretch overflow-hidden bg-lime-300">

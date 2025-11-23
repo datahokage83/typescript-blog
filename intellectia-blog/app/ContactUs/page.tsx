@@ -137,7 +137,7 @@ const ContactUs = (): JSX.Element => {
 
   return (
     <>
-      <Nav logoURL={logoURL} />
+      <Nav />
 
     
      {loading && (

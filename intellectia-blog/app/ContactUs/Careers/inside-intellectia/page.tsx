@@ -51,7 +51,7 @@ export default function WorkwithUs() {
 
   return (
     <div>
-      <Nav logoURL={logoURL} />
+      <Nav/>
 
       <section className="w-full bg-white flex flex-col items-center">
 

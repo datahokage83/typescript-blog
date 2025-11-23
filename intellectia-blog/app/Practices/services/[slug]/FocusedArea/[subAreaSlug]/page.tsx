@@ -167,7 +167,8 @@ const FocusedAreaPage = () => {
 
   return (
     <>
-      {logoURL && <Nav logoURL={logoURL} />}
+      {/* {logoURL && <Nav logoURL={logoURL} />} */}
+      <Nav/>
 
       {/* Hero Section */}
       <section className="bg-sky-500 md:h-[35pc] flex flex-col md:flex-row items-stretch">

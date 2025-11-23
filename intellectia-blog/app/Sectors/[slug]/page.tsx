@@ -47,7 +47,8 @@ export default async function SectorPage({ params }: { params: { slug: string } 
 
   return (
     <>
-      <Nav logoURL={logoURL} />
+      {/* <Nav logoURL={logoURL} /> */}
+        <Nav/>
 
       <div className="w-full flex justify-between">
         {/* LEFT SECTION */}

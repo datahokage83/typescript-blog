@@ -154,7 +154,8 @@ const SegmentPage = () => {
 
   return (
     <>
-      {logoURL && <Nav logoURL={logoURL} />}
+      {/* {logoURL && <Nav logoURL={logoURL} />} */}
+        <Nav/>
 
       {/* --- HERO SECTION --- */}
       <section className="bg-cyan-700 relative w-full h-[85vh] font-dm-sans flex flex-col md:flex-row items-stretch overflow-hidden">
