@@ -67,10 +67,18 @@ const Home: NextPage = async () => {
     : "";
 
   // ✅ Safe Logo URL
-  const logoURL = Logo?.data?.attributes?.url
-    ? baseURL + Logo.data.attributes.url
-    : "";
-    console.log("🔥 LOGO URL:", logoURL);
+  // const logoURL = Logo?.data?.attributes?.url
+  //   ? baseURL + Logo.data.attributes.url
+  //   : "";
+    // ✅ Safe Logo URL
+        const rawLogo = Logo?.data?.attributes?.url || "";
+
+        const logoURL = rawLogo.startsWith("http")
+          ? rawLogo
+          : `${baseURL}${rawLogo}`;
+
+        console.log("🔥 LOGO URL:", logoURL);
+
 
   return (
     <>

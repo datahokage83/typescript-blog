@@ -23,8 +23,15 @@ const Page = async ({ params }: any) => {
   const strapiData = await getStrapiData("/api/home-page?populate=*");
   const blog = await fetchBlog(params.BlogID);
   const { Title, Logo } = strapiData.data.attributes;
-  const logoURL = "https://typescript-blog-backend.onrender.com" + Logo.data.attributes.url;
-  const { title, content, cover } = blog.data.attributes;
+  // const logoURL = "https://typescript-blog-backend.onrender.com" + Logo.data.attributes.url;
+  const rawLogo = Logo?.data?.attributes?.url;
+
+  const logoURL = rawLogo
+    ? rawLogo.startsWith("http")
+      ? rawLogo
+      : "https://typescript-blog-backend.onrender.com" + rawLogo
+    : "/logo.png";
+    const { title, content, cover } = blog.data.attributes;
   const imageUrl = "https://typescript-blog-backend.onrender.com" + cover?.data?.attributes?.url;
 
   return (

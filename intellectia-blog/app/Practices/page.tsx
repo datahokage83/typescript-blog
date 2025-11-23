@@ -41,8 +41,17 @@ const Practice = () => {
         );
 
         // setLogoURL(baseURL + homeData.data.attributes.Logo.data.attributes.url);
-            const cloudinaryLogo = homeData?.data?.attributes?.Logo?.data?.attributes?.url;
-            setLogoURL(cloudinaryLogo || "");
+            // const cloudinaryLogo = homeData?.data?.attributes?.Logo?.data?.attributes?.url;
+            // setLogoURL(cloudinaryLogo || "");
+            const logoURL = homeData?.data?.attributes?.Logo?.data?.attributes?.url;
+
+                const fullLogoURL = logoURL?.startsWith("http")
+                  ? logoURL
+                  : `${baseURL}${logoURL}`;
+
+                setLogoURL(fullLogoURL);
+
+
       } catch (error) {
         console.error("Error fetching practice data:", error);
       } finally {
