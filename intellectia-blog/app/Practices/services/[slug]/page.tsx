@@ -7,6 +7,8 @@ import Footer from "@/components/Footer/Footer";
 import Nav from "@/components/nav";
 import { ArrowUpRight } from "lucide-react";
 import React from "react";
+import { Oval } from "react-loader-spinner";
+
 
 
 async function getStrapiData(url: string) {
@@ -42,9 +44,9 @@ const PracticeDetailPage = () => {
         // if (logo) setLogoURL("https://typescript-blog-backend.onrender.com" + logo);
         // Fetch Logo
           const homeData = await getStrapiData("/api/home-page?populate=*");
-          const logo = homeData.data?.attributes?.Logo?.data?.attributes?.url;
-          setLogoURL(buildURL(logo));
-          if (logo) setLogoURL("https://typescript-blog-backend.onrender.com" + logo);
+          const logoURL = homeData.data?.attributes?.Logo?.data?.attributes?.url;
+          setLogoURL(buildURL(logoURL));
+
 
         // Fetch Practice
         const practiceData = await getStrapiData(
@@ -77,7 +79,24 @@ const PracticeDetailPage = () => {
   }, [practiceSlug]);
 
   if (notFound) return <p className="text-center py-20">Practice not found</p>;
-  if (!practice) return <p className="text-center py-20">Loading...</p>;
+  // if (!practice) return <p className="text-center py-20">Loading...</p>;
+
+  if (!practice) {
+  return (
+    <div className="flex items-center justify-center h-screen bg-white">
+      <Oval
+        height={60}
+        width={60}
+        color="#255B4E"
+        secondaryColor="#d1d5db"
+        strokeWidth={4}
+        strokeWidthSecondary={4}
+        ariaLabel="loading"
+      />
+    </div>
+  );
+}
+
 
   //  const practiceImage = practice.attributes.PracticeAreaImage?.data?.attributes?.url
   //   ? `https://typescript-blog-backend.onrender.com${practice.attributes.PracticeAreaImage.data.attributes.url}`

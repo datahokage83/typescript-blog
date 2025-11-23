@@ -7,6 +7,8 @@ import Footer from '@/components/Footer/Footer';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowUpRight } from "lucide-react";
+import { Oval } from "react-loader-spinner";
+
 
 interface TeamMember {
   id: number;
@@ -71,9 +73,8 @@ const FocusedAreaPage = () => {
         // const homeRes = await getStrapiData('/api/home-page?populate=*');
         // const logo = homeRes.data?.attributes?.Logo?.data?.attributes?.url;
           const homeData = await getStrapiData("/api/home-page?populate=*");
-          const logo = homeData.data?.attributes?.Logo?.data?.attributes?.url;
-          setLogoURL(buildURL(logo));
-        if (logo) setLogoURL('https://typescript-blog-backend.onrender.com' + logo);
+          const logoURL = homeData.data?.attributes?.Logo?.data?.attributes?.url;
+          setLogoURL(buildURL(logoURL));
 
         if (!subAreaSlug) {
           setNotFound(true);
@@ -130,7 +131,22 @@ const FocusedAreaPage = () => {
     );
   }
 
-  if (!SubArea) return <p className="text-center py-20">Loading...</p>;
+  // if (!SubArea) return <p className="text-center py-20">Loading...</p>;
+
+  if (!SubArea) {
+  return (
+  <div className="flex items-center justify-center h-screen bg-white">
+        <Oval
+          height={60}
+          width={60}
+          color="#0EA5E9"
+          secondaryColor="#BAE6FD"
+          strokeWidth={4}
+          strokeWidthSecondary={4}
+          ariaLabel="loading"
+        />
+      </div>
+  )};
 
   const imgData = SubArea.attributes.SubAreaImg?.data;
   // const imageUrl = imgData

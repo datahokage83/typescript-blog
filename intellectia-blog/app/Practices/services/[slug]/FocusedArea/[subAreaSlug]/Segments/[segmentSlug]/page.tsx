@@ -4,6 +4,15 @@ import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import Nav from '@/components/nav';
 import Footer from '@/components/Footer/Footer';
+import { Oval } from "react-loader-spinner";
+
+
+function buildURL(rawUrl?: string) {
+  if (!rawUrl) return "/placeholder.jpg"; // fallback
+  return rawUrl.startsWith("http")
+    ? rawUrl // already a full URL (Cloudinary or external)
+    : "https://typescript-blog-backend.onrender.com" + rawUrl; // relative paths
+}
 
 const SegmentPage = () => {
   const { segmentSlug } = useParams();
@@ -22,8 +31,10 @@ const SegmentPage = () => {
         // -------------------------------------
         const homeRes = await fetch("https://typescript-blog-backend.onrender.com/api/home-page?populate=*");
         const homeData = await homeRes.json();
-        const logo = homeData.data?.attributes?.Logo?.data?.attributes?.url;
-        if (logo) setLogoURL("https://typescript-blog-backend.onrender.com" + logo);
+        // const logo = homeData.data?.attributes?.Logo?.data?.attributes?.url;
+        // if (logo) setLogoURL("https://typescript-blog-backend.onrender.com" + logo);
+        const logoURL = homeData.data?.attributes?.Logo?.data?.attributes?.url;
+        setLogoURL(buildURL(logoURL));
 
 
         // -------------------------------------
@@ -99,7 +110,22 @@ const SegmentPage = () => {
       </div>
     );
 
-  if (!segment) return <p className="text-center py-20">Loading...</p>;
+  // if (!segment) return <p className="text-center py-20">Loading...</p>;
+
+  if (!segment) {
+  return (
+  <div className="flex items-center justify-center h-screen bg-white">
+        <Oval
+          height={60}
+          width={60}
+          color="#0E7490"
+          secondaryColor="#BAE6FD" 
+          strokeWidth={4}
+          strokeWidthSecondary={4}
+          ariaLabel="loading"
+        />
+      </div>
+  )};
 
   // -------------------------------------
   // SEGMENT MAIN IMAGE HANDLING

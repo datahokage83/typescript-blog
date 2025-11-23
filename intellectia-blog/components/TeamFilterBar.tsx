@@ -229,7 +229,7 @@ const Dropdown: React.FC<DropdownProps> = ({
     options.find((opt) => opt.value === value)?.label || label;
 
   return (
-    <div ref={dropdownRef} className="relative w-full md:w-1/4">
+    <div ref={dropdownRef} className="relative w-full md:w-1/3">
       <button
         type="button"
         onClick={onToggle}
@@ -353,7 +353,7 @@ const TeamFilterBar: React.FC<TeamFilterBarProps> = ({ onFilterChange }) => {
         onToggle={() => toggleDropdown("practice")}
         dropdownRef={practiceRef}
         options={[
-          { label: "Employment", value: "Employment" },
+          { label: "Workplace Law", value: "Employment" },
           { label: "Intellectual Property", value: "Intellectual Property (IP)" },
           { label: "Disputes", value: "Disputes" },
           { label: "Property Law", value: "Property Law" },
@@ -374,7 +374,7 @@ const TeamFilterBar: React.FC<TeamFilterBarProps> = ({ onFilterChange }) => {
           { label: "Healthcare", value: "Healthcare" },
           { label: "Technology", value: "Technology" },
           { label: "Corporate", value: "Corporate" },
-          { label: "Employment & Labour", value: "Employment & Labour" },
+          { label: "Employment", value: "Employment & Labour" },
         ]}
       />
 
