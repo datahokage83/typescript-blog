@@ -28,8 +28,10 @@ module.exports = ({ env }) => ({
       provider: "nodemailer",
       providerOptions: {
         host: "smtp.gmail.com",
-        port: 465,
-        secure: true,
+        // port: 465,
+        // secure: true,
+        port: 567,
+        secure:false,
         auth: {
           user: env("SMTP_USER"),
           pass: env("SMTP_PASS"),
