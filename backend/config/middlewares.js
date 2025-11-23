@@ -98,7 +98,8 @@ module.exports = [
       origin: [
         "http://localhost:3000",
         "https://typescript-blog-pib8.vercel.app",
-        "https://typescript-blog-hazel.vercel.app"
+        "https://typescript-blog-hazel.vercel.app",
+        "https://typescript-blog-backend.onrender.com"  
       ],
       methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
       headers: ['Content-Type', 'Authorization', 'Origin', 'Accept'],
