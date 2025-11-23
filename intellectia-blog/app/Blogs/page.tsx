@@ -27,9 +27,12 @@ export default async function Blogs() {
   const blogData = await getStrapiData("/api/posts?populate=*");
 
   const { Title, MissionLine, Logo } = homeData.data.attributes;
-  const logoURL =
-    "https://typescript-blog-backend.onrender.com" +
-    Logo.data.attributes.url;
+      const rawLogo = Logo?.data?.attributes?.url || "";
+
+    const logoURL = rawLogo.startsWith("http")
+      ? rawLogo
+      : `https://typescript-blog-backend.onrender.com${rawLogo}`;
+
   return (
     <>
       <Nav logoURL={logoURL} />
