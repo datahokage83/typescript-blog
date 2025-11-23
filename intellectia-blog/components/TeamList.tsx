@@ -1,10 +1,11 @@
 
 "use client";
 
-import { FC, useState } from "react";
+import { FC, useState,useEffect  } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { LuMoveLeft, LuMoveRight } from "react-icons/lu";
+import { Oval } from "react-loader-spinner";
 
 interface TeamMember {
   id: number;
@@ -28,6 +29,7 @@ interface TeamListProps {
 
 const TeamList: FC<TeamListProps> = ({ teamMembers = [] }) => {
   const [currentPage, setCurrentPage] = useState(1);
+  const [loading, setLoading] = useState(true);
   const membersPerPage = 12;
 
   // Pagination calculations
@@ -43,6 +45,11 @@ const TeamList: FC<TeamListProps> = ({ teamMembers = [] }) => {
         const startIndex = (currentPage - 1) * membersPerPage;
         const currentMembers = sortedMembers.slice(startIndex, startIndex + membersPerPage);
 
+         useEffect(() => {
+          setLoading(true);
+        }, [teamMembers, currentPage]);
+
+
         if (!sortedMembers.length) return <p>No team members found.</p>;
 
 
@@ -50,6 +57,22 @@ const TeamList: FC<TeamListProps> = ({ teamMembers = [] }) => {
 
   return (
     <>
+       
+         {loading && (
+        <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black bg-opacity-40 backdrop-blur-sm">
+          <Oval
+            height={60}
+            width={60}
+            color="#ffffff"
+            secondaryColor="#e0e0e0"
+            strokeWidth={4}
+            strokeWidthSecondary={4}
+            ariaLabel="loading"
+          />
+        </div>
+      )}
+
+
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-3 md:gap-6 p-1 md:p-6">
         {currentMembers.map((member) => {
           // const imageUrl =

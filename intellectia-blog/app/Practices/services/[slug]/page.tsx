@@ -37,9 +37,14 @@ const PracticeDetailPage = () => {
         if (!practiceSlug) return setNotFound(true);
 
         // Fetch Logo
-        const homeData = await getStrapiData("/api/home-page?populate=*");
-        const logo = homeData.data?.attributes?.Logo?.data?.attributes?.url;
-        if (logo) setLogoURL("https://typescript-blog-backend.onrender.com" + logo);
+        // const homeData = await getStrapiData("/api/home-page?populate=*");
+        // const logo = homeData.data?.attributes?.Logo?.data?.attributes?.url;
+        // if (logo) setLogoURL("https://typescript-blog-backend.onrender.com" + logo);
+        // Fetch Logo
+          const homeData = await getStrapiData("/api/home-page?populate=*");
+          const logo = homeData.data?.attributes?.Logo?.data?.attributes?.url;
+          setLogoURL(buildURL(logo));
+          if (logo) setLogoURL("https://typescript-blog-backend.onrender.com" + logo);
 
         // Fetch Practice
         const practiceData = await getStrapiData(

@@ -46,6 +46,14 @@ async function getStrapiData(url: string) {
   return data;
 }
 
+function buildURL(rawUrl?: string) {
+  if (!rawUrl) return "/placeholder.jpg"; // fallback
+  return rawUrl.startsWith("http")
+    ? rawUrl // already a full URL (Cloudinary or external)
+    : "https://typescript-blog-backend.onrender.com" + rawUrl; // relative paths
+}
+
+
 const FocusedAreaPage = () => {
   const { slug: practiceSlug, subAreaSlug: rawSubAreaSlug } = useParams();
   const subAreaSlug = Array.isArray(rawSubAreaSlug) ? rawSubAreaSlug[0] : rawSubAreaSlug;
@@ -60,8 +68,11 @@ const FocusedAreaPage = () => {
     const fetchData = async () => {
       try {
         // Fetch site logo
-        const homeRes = await getStrapiData('/api/home-page?populate=*');
-        const logo = homeRes.data?.attributes?.Logo?.data?.attributes?.url;
+        // const homeRes = await getStrapiData('/api/home-page?populate=*');
+        // const logo = homeRes.data?.attributes?.Logo?.data?.attributes?.url;
+          const homeData = await getStrapiData("/api/home-page?populate=*");
+          const logo = homeData.data?.attributes?.Logo?.data?.attributes?.url;
+          setLogoURL(buildURL(logo));
         if (logo) setLogoURL('https://typescript-blog-backend.onrender.com' + logo);
 
         if (!subAreaSlug) {
